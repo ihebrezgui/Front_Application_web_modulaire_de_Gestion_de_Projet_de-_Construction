@@ -1,0 +1,43 @@
+<main id="main" class="main">
+<div class="card-body">
+    <h5 class="card-title">Add Task</h5>
+  
+    <form (ngSubmit)="addTask()">
+      <div class="form-group">
+        <label for="nomTache">Task Name</label>
+        <input type="text" class="form-control" id="nomTache" [(ngModel)]="newTask.nomTache" name="nomTache">
+      </div>
+  
+      <div class="form-group">
+        <label for="descriptionTache">Task Description</label>
+        <textarea class="form-control" id="descriptionTache" [(ngModel)]="newTask.descriptionTache" name="descriptionTache" required></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="dateDebutTache">Start Date</label>
+        <input type="date" class="form-control" id="dateDebutTache" [(ngModel)]="newTask.dateDebutTache" name="dateDebutTache" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="dateFinTache">End Date</label>
+        <input type="date" class="form-control" id="dateFinTache" [(ngModel)]="newTask.dateFinTache" name="dateFinTache" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="progresTache">Progress</label>
+        <input type="number" class="form-control" id="progresTache" [(ngModel)]="newTask.progresTache" name="progresTache" min="0" max="100">
+      </div>
+  
+      <div class="form-group">
+        <label for="statut">Status</label>
+        <select class="form-control" id="statut" [(ngModel)]="newTask.statut" name="statut">
+          <option value="PENDING">Pending</option>
+          <option value="COMPLETED">Completed</option>
+          <option value="INPROGRESS">In Progress</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+  </div>
+  </main>

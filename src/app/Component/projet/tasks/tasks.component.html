@@ -1,0 +1,29 @@
+<main id="main" class="main">
+    <div class="card-body">
+      <h5 class="card-title">All Tasks</h5>
+  
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Task Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">progres</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{ task.nomTache }}</td>
+            <td>{{ task.descriptionTache }}</td>
+            <td>{{ task.dateDebutTache | date }}</td>
+            <td>{{ task.dateFinTache | date }}</td>
+            <td>{{ task.progresTache }}</td>
+            <td>{{ task.statut }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  

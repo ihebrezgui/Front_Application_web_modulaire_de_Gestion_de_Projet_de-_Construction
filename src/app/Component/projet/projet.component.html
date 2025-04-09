@@ -1,0 +1,51 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<main id="main" class="main">
+  <div class="card-body">
+    <h5 class="card-title">Projects</h5>
+
+    <!-- Default Table -->
+    <table class="table">
+      <thead>
+        <button (click)="sortByName()">Sort A-Z</button>
+        <button (click)="sortByDate()">Sort by Date</button>
+        <tr>
+          <th scope="col">
+            Project Name
+           
+          </th>
+          <th scope="col">Description</th>
+          <th scope="col">
+            Date Debut
+            
+          </th>
+          <th scope="col">Date Fin</th>
+          <th scope="col">Budget</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td>{{ project.nomProjet }}</td>
+          <td>{{ project.descriptionProjet }}</td>
+          <td>{{ project.dateDebutProjet }}</td>
+          <td>{{ project.dateFinProjet }} </td>
+          <td>{{ project.budgetProjet }}</td>
+          <td>{{ project.statut }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteProject(project.idProjet)">Supprimer</button>
+            <button class="btn btn-primary" (click)="navigateToUpdate(project)">Modifier</button>
+            <button class="btn btn-primary" [routerLink]="['/add-rapport', project.idProjet]">Ajouter Rapport</button>
+            <button (click)="navigateToKpi(project)">View KPIs</button>
+            <button class="btn btn-info" (click)="navigateToAddTask(project)">Add Task</button>
+            <button class="btn btn-info" (click)="navigateToTasks(project)">voir Task</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End Default Table Example -->
+  </div>
+</main>
+<app-footer></app-footer>

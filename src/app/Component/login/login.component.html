@@ -1,0 +1,8 @@
+<div style="text-align: center; padding: 20px;">
+    <h2>Login with Face ID</h2>
+    <webcam [trigger]="trigger" (imageCapture)="handleImage($event)"></webcam>
+    <br />
+    <button (click)="triggerSnapshot()">📷 Capture & Login</button>
+    <p>{{ resultMessage }}</p>
+  </div>
+  

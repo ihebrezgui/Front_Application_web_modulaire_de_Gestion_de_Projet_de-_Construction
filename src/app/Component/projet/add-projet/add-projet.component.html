@@ -1,0 +1,106 @@
+<main id="main" class="main">
+  <div class="card-body">
+    <h5 class="card-title">General Form Elements</h5>
+
+    <!-- General Form Elements -->
+    <form (ngSubmit)="addProject()" #projectForm="ngForm">
+      
+      <!-- Project Name -->
+      <div class="form-group">
+        <label>Project Name:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="newProject.nomProjet" 
+          name="name" 
+          required
+          #name="ngModel"
+          class="form-control">
+        <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+          <small>Project name is required.</small>
+        </div>
+      </div>
+      
+      <!-- Project Description -->
+      <div class="form-group">
+        <label>Project Description:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="newProject.descriptionProjet" 
+          name="description" 
+          required
+          #description="ngModel"
+          class="form-control">
+        <div *ngIf="description.invalid && description.touched" class="alert alert-danger">
+          <small>Description is required.</small>
+        </div>
+      </div>
+
+      <!-- Start Date -->
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input 
+          type="date" 
+          [(ngModel)]="newProject.dateDebutProjet" 
+          name="startDate" 
+          required
+          #startDate="ngModel"
+          class="form-control">
+        <div *ngIf="startDate.invalid && startDate.touched" class="alert alert-danger">
+          <small>Start date is required.</small>
+        </div>
+      </div>
+
+      <!-- End Date -->
+      <div class="form-group">
+        <label>End Date:</label>
+        <input 
+          type="date" 
+          [(ngModel)]="newProject.DateFinProjet" 
+          name="endDate"
+          required
+          #endDate="ngModel"
+          class="form-control">
+        <div *ngIf="endDate.invalid && endDate.touched" class="alert alert-danger">
+          <small>End date is required.</small>
+        </div>
+      </div>
+
+      <!-- Budget -->
+      <div class="form-group">
+        <label>Budget:</label>
+        <input 
+          type="number" 
+          [(ngModel)]="newProject.budgetProjet" 
+          name="budget" 
+          required
+          min="0"
+          #budget="ngModel"
+          class="form-control">
+        <div *ngIf="budget.invalid && budget.touched" class="alert alert-danger">
+          <small>Budget is required and must be a positive number.</small>
+        </div>
+      </div>
+      
+      <!-- Status -->
+      <div class="form-group">
+        <label>Status:</label>
+        <select 
+          [(ngModel)]="newProject.statut" 
+          name="status" 
+          required
+          #status="ngModel"
+          class="form-control">
+          <option value="INPROGRESS">In Progress</option>
+          <option value="COMPLETED">Completed</option>
+          <option value="PENDING">Pending</option>
+        </select>
+        <div *ngIf="status.invalid && status.touched" class="alert alert-danger">
+          <small>Status is required.</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="projectForm.invalid" class="btn btn-primary">Add Project</button>
+    </form><!-- End General Form Elements -->
+
+  </div>
+</main><!-- End #main -->
