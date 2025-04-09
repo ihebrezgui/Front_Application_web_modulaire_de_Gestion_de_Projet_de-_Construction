@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Builderz - Construction Company Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Construction Company Website Template" name="keywords">
+    <meta content="Construction Company Website Template" name="description">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Top Bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="logo">
+                            <a href="index.html">
+                                <h1>Builderz</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-calendar"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Opening Hour</h3>
+                                        <p>Mon - Fri, 8:00 - 9:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-call"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Call Us</h3>
+                                        <p>+012 345 6789</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-send-mail"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Email Us</h3>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- Nav Bar Start -->
+        <div class="nav-bar">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="service.html" class="nav-item nav-link">Service</a>
+                            <a href="team.html" class="nav-item nav-link">Team</a>
+                            <a href="portfolio.html" class="nav-item nav-link">Project</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu">
+                                    <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                    <a href="single.html" class="dropdown-item">Single Page</a>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <div class="ml-auto">
+                            <a class="btn" href="#">Get A Quote</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Our Blog</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Our Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+       
+
+        <div class="containerr">
+            <div class="section-header">
+              <h2>Demande de Recrutement</h2>
+              <p>Veuillez remplir ce formulaire pour soumettre une demande de recrutement.</p>
+            </div>
+          
+            <form (ngSubmit)="onSubmit()">
+              <!-- Nom -->
+              <div>
+                <label for="nom" class="form-label">Nom:</label>
+                <input type="text" id="nom" [(ngModel)]="nom" name="nom" class="form-control" required>
+                <div *ngIf="recrutementForm.get('nom')?.invalid && recrutementForm.get('nom')?.touched" class="text-danger">
+                    Le nom est requis.
+                  </div>
+              </div>
+          
+              <!-- Prénom -->
+              <div>
+                <label for="prenom" class="form-label">Prénom:</label>
+                <input type="text" id="prenom" [(ngModel)]="prenom" name="prenom" class="form-control" required>
+                <div *ngIf="recrutementForm.get('prenom')?.invalid && recrutementForm.get('prenom')?.touched" class="text-danger">
+                    Le prénom est requis.
+                  </div>
+              </div>
+              <!--date de naissance-->
+              <div>
+                <label for="dateNaissance" class="form-label">Date de Naissance:</label>
+                <input type="date" id="dateNaissance" [(ngModel)]="dateNaissance" name="dateNaissance" class="form-control" required>
+                <div *ngIf="recrutementForm.get('dateNaissance')?.invalid && recrutementForm.get('dateNaissance')?.touched" class="text-danger">
+                    La date de naissance est requise.
+                  </div>  
+            </div>
+          
+              <!-- Email -->
+              <div>
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required>
+                <div *ngIf="recrutementForm.get('email')?.invalid && recrutementForm.get('email')?.touched" class="text-danger">
+                    L'email est requis et doit être valide.
+                  </div>
+              </div>
+          
+              <!-- Num de Telephone -->
+              <div>
+                <label for="numTelephone" class="form-label">Telephone:</label>
+                <input type="tel" id="numTelephone" [(ngModel)]="telephone" name="numTelephone" class="form-control" required>
+                <div *ngIf="recrutementForm.get('telephone')?.invalid && recrutementForm.get('telephone')?.touched" class="text-danger">
+                    Numéro de téléphone invalide, doit contenir 8 chiffres.
+                  </div>
+              </div>
+          
+              <!--Poste-->
+              <div>
+                <label for="poste" class="form-label">Poste:</label>
+                <select type="text" id="poste" [(ngModel)]="poste" name="poste" class="form-control" required>
+                <option value="" disabled>Choisissez un poste</option>
+                <option *ngFor="let p of postes" [value]="p">{{ p }}</option>
+                </select>
+                <div *ngIf="recrutementForm.get('poste')?.invalid && recrutementForm.get('poste')?.touched" class="text-danger">
+                    Veuillez choisir un poste.
+                  </div>
+              </div>
+          
+              <!-- Commentaire -->
+              <div>
+                <label for="commentaire" class="form-label">Commentaire:</label>
+                <textarea id="commentaire" [(ngModel)]="commentaire" name="commentaire" class="form-control" required></textarea>
+                <div *ngIf="recrutementForm.get('commentaire')?.invalid && recrutementForm.get('commentaire')?.touched" class="text-danger">
+                    Ce champ est requis.
+                  </div>  
+            </div>
+          
+              <!-- Fichier -->
+              <div>
+                <label for="fichier" class="form-label">Fichier (CV, Lettre de Motivation):</label>
+                <input type="file" id="fichier" (change)="onFileChange($event)" class="form-control" required>
+              </div>
+          
+              <!-- Type de Demande -->
+              <div>
+                <label for="typeDemande" class="form-label">Type de Demande:</label>
+                <select id="typeDemande" [(ngModel)]="typeDemande" name="typeDemande" class="form-control" required>
+                  <option value="RECRUTEMENT">Recrutement</option>
+                  <option value="STAGE">Stage</option>
+                  <option value="AUTRE">Autre</option>
+                </select>
+              </div>
+          
+              <!-- Bouton Envoyer -->
+              <div>
+                <button type="submit" class="btn-primary">Envoyer la Demande</button>
+              </div>
+            </form>
+          </div>
+          
+              
+
+        <!-- Footer Start -->
+        <div class="footer wow fadeIn" data-wow-delay="0.3s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-contact">
+                            <h2>Office Contact</h2>
+                            <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+                            <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
+                            <p><i class="fa fa-envelope"></i></p>
+                            <div class="footer-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-link">
+                            <h2>Services Areas</h2>
+                            <a href="">Building Construction</a>
+                            <a href="">House Renovation</a>
+                            <a href="">Architecture Design</a>
+                            <a href="">Interior Design</a>
+                            <a href="">Painting</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-link">
+                            <h2>Useful Pages</h2>
+                            <a href="">About Us</a>
+                            <a href="">Contact Us</a>
+                            <a href="">Our Team</a>
+                            <a href="">Projects</a>
+                            <a href="">Testimonial</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="newsletter">
+                            <h2>Newsletter</h2>
+                            <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
+                            <div class="form">
+                                <input class="form-control" placeholder="Email here">
+                                <button class="btn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container footer-menu">
+                <div class="f-menu">
+                    <a href="">Terms of use</a>
+                    <a href="">Privacy policy</a>
+                    <a href="">Cookies</a>
+                    <a href="">Help</a>
+                    <a href="">FQAs</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>

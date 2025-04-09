@@ -1,0 +1,114 @@
+
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white">
+        <h2 class="h5 mb-0 text-center text-primary">
+          <i class="bi bi-people-fill me-2"></i>Disponibilité des Employés par Poste
+        </h2>
+      </div>
+  
+      <div class="card-body">
+        <!-- Filtre -->
+        <div class="row mb-4">
+          <div class="col-md-6 mx-auto">
+            <div class="input-group">
+              <span class="input-group-text bg-light">
+                <i class="bi bi-funnel"></i>
+              </span>
+              <select id="posteSelect" class="form-select" [(ngModel)]="selectedPoste" (change)="onPosteChange()">
+                <option value="">Tous les postes</option>
+                <option *ngFor="let poste of postes" [value]="poste">
+                  {{ poste | titlecase }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Indicateur de chargement -->
+        <div *ngIf="!filteredPostesDisponibles" class="text-center py-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+          <p class="mt-2 text-muted">Chargement des données...</p>
+        </div>
+  
+        <!-- Liste des postes sous forme de grille -->
+        <div *ngIf="filteredPostesDisponibles && (filteredPostesDisponibles | keyvalue).length > 0;">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div *ngFor="let poste of (filteredPostesDisponibles | keyvalue)" class="col">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">
+                      <i class="bi bi-person-badge me-2"></i>{{ poste.key | titlecase }}
+                    </h5>
+                    <span class="badge rounded-pill"
+                      [ngClass]="{
+                        'bg-success': getDisponibilitePourcentage(poste.key) >= 70,
+                        'bg-warning': getDisponibilitePourcentage(poste.key) >= 40 && getDisponibilitePourcentage(poste.key) < 70,
+                        'bg-danger': getDisponibilitePourcentage(poste.key) < 40
+                      }">
+                      {{ getDisponibilitePourcentage(poste.key) }}%
+                    </span>
+                  </div>
+  
+                  <div class="progress mb-2" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped" role="progressbar"
+                      [style.width.%]="getDisponibilitePourcentage(poste.key)"
+                      [ngClass]="{
+                        'bg-success': getDisponibilitePourcentage(poste.key) >= 70,
+                        'bg-warning': getDisponibilitePourcentage(poste.key) >= 40 && getDisponibilitePourcentage(poste.key) < 70,
+                        'bg-danger': getDisponibilitePourcentage(poste.key) < 40
+                      }"
+                      [attr.aria-valuenow]="getDisponibilitePourcentage(poste.key)"
+                      aria-valuemin="0"
+                      aria-valuemax="100">
+                    </div>
+                  </div>
+  
+                  <div class="d-flex justify-content-between align-items-center text-sm text-muted mb-2">
+                    <div>
+                      <span class="me-2">
+                        <i class="bi bi-people"></i> Total: {{ totalEmployeesParPoste[poste.key] || 0 }}
+                      </span>
+                      <span>
+                        <i class="bi bi-check-circle"></i> Disponibles:
+                        <span *ngIf="poste.value.includes('Aucun dispo')">0</span>
+                        <span *ngIf="!poste.value.includes('Aucun dispo')">{{ poste.value.length }}</span>
+                      </span>
+                    </div>
+                    <button *ngIf="!poste.value.includes('Aucun dispo')" 
+                            class="btn btn-details btn-sm"
+                            (click)="toggleDisponibles(poste.key)">
+                      <i class="fas" [ngClass]="showDisponibles[poste.key] ? 'fa-eye-slash' : 'fa-eye'"></i>
+                      {{ showDisponibles[poste.key] ? 'Masquer' : 'Voir' }}
+                    </button>
+                  </div>
+  
+                  <div *ngIf="poste.value.includes('Aucun dispo')" class="text-danger small">
+                    <i class="bi bi-exclamation-triangle"></i> Aucun employé disponible
+                  </div>
+  
+                  <!-- Liste des employés disponibles (visible quand on clique sur l'œil) -->
+                  <div *ngIf="showDisponibles[poste.key] && !poste.value.includes('Aucun dispo')" 
+                       class="mt-3 pt-2 border-top">
+                    <h6 class="small fw-bold mb-2">Employés disponibles :</h6>
+                    <ul class="list-group list-group-flush small">
+                      <li *ngFor="let employe of poste.value" class="list-group-item border-0 px-0 py-1">
+                        <i class="bi bi-person-circle me-2 text-muted"></i>
+                        {{ employe.nom }} {{ employe.prenom }}
+                        <span *ngIf="employe.matricule" class="text-muted ms-2">({{ employe.matricule }})</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

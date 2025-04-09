@@ -1,0 +1,293 @@
+/* Styles pour la section */
+.section {
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+/* Styles pour la carte */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles pour le tableau principal */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Permet le défilement horizontal sur les petits écrans */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef; /* Ligne de séparation entre les lignes */
+}
+
+.table th {
+  background-color: #5b94e9; /* Couleur d'en-tête */
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.table tr:hover {
+  background-color: #f1f3f5; /* Couleur de fond au survol */
+  transition: background-color 0.3s ease;
+}
+
+/* Styles pour les cellules de sous-tableaux (notes, commentaires, dates) */
+.cell-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell-content div {
+  padding: 4px 0;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.cell-content div:not(:last-child) {
+  border-bottom: 1px solid #e9ecef; /* Ligne de séparation entre les éléments */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .cell-content div {
+    font-size: 0.75rem;
+    padding: 6px 0;
+  }
+}
+
+
+/* Styles pour la modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Ombre de fond */
+  z-index: 1050;
+  transition: opacity 0.3s ease;
+  overflow-y: auto; /* Permet de défiler si le contenu est trop long */
+}
+
+.modal.show {
+  display: block;
+  opacity: 1; /* Assure une transition douce lors de l'affichage */
+}
+
+.modal-dialog {
+  position: relative;
+  margin: 10% auto;
+  max-width: 500px;
+  width: 90%; /* La modal occupe 90% de la largeur sur petits écrans */
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre de la modal */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Styles pour l'icône "Voir" */
+.fas.fa-eye {
+  font-size: 1.25rem;
+  color: #3182ce; /* Couleur bleue qui s'intègre bien avec le design général */
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.fas.fa-eye:hover {
+  background-color: #ebf8ff; /* Couleur de fond douce au survol */
+  color: #2b6cb0; /* Couleur plus foncée au survol */
+  transform: translateY(-2px); /* Effet de survol avec élévation */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet flottant */
+}
+
+.fas.fa-eye:active {
+  transform: translateY(0); /* Réduire l'effet d'élévation quand l'icône est cliquée */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Header */
+.modal-header .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+  color: #333;
+}
+
+/* Ajout d'un bouton pour fermer la modal dans le footer */
+.modal-footer button {
+  background-color: #e53e3e; /* Couleur rouge */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+  background-color: #c53030; /* Couleur rouge plus foncée au survol */
+}
+
+/* Ajouter une transition d'apparition pour la modal */
+.modal {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design pour la modal */
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 400px;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+
+  .modal-header .btn-close {
+    font-size: 1.2rem;
+  }
+}
+
+/* Style pour l'icône "Voir" */
+/* Icon Button (Eye) */
+.fas.fa-eye {
+  font-size: 1.25rem;
+  color: #3182ce; /* Couleur bleue qui s'intègre bien avec le design général */
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.fas.fa-eye:hover {
+  background-color: #ebf8ff; /* Couleur de fond douce au survol */
+  color: #2b6cb0; /* Couleur plus foncée au survol */
+  transform: translateY(-2px); /* Effet de survol avec élévation */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet flottant */
+}
+
+.fas.fa-eye:active {
+  transform: translateY(0); /* Réduire l'effet d'élévation quand l'icône est cliquée */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Header */
+.modal-header .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+  color: #333;
+}
+
+/* Styles pour le tableau */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.table th {
+  background-color: #5b94e9;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.table tr:hover {
+  background-color: #f1f3f5;
+}
+
+.text-end {
+ 
+  text-align: end; /* Aligner le contenu à droite */
+}
+

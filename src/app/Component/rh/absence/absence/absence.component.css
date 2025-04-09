@@ -1,0 +1,229 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+  
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+/* Modal Header */
+.modal-content h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+}
+/* Form Labels */
+.modal-content label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  color: #4a5568;
+}
+/* Form Inputs */
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f8fafc;
+  transition: border-color 0.2s ease;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #4299e1;
+  outline: none;
+}
+
+/* Modal Buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+  /* Styles pour la section */
+.section {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+/* Titre de la section */
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Styles pour la carte (card) */
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Styles pour le tableau */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête du tableau */
+.table thead th {
+  background-color: #5b94e9; /* Couleur d'en-tête */
+  color: #ffffff;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #4a7dc2; /* Bordure inférieure */
+}
+
+/* Cellules du tableau */
+.table tbody td {
+  padding: 14px;
+  border-bottom: 1px solid #e9ecef; /* Ligne de séparation entre les lignes */
+  color: #495057;
+}
+
+/* Effet de survol sur les lignes */
+.table tbody tr:hover {
+  background-color: #f1f3f5; /* Couleur de fond au survol */
+  transition: background-color 0.3s ease;
+}
+
+/* Lignes alternées (stripes) */
+.table tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fa; /* Couleur de fond pour les lignes impaires */
+}
+
+/* Styles pour les boutons d'actions */
+.btn-action {
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: 8px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-action i {
+  font-size: 14px;
+}
+
+/* Bouton Modifier */
+.btn-edit i {
+  color: #007bff;
+}
+
+.btn-edit:hover {
+  transform: scale(1.1);
+}
+
+/* Bouton Supprimer */
+.btn-delete i {
+  color: #dc3545;
+}
+
+.btn-delete:hover {
+  transform: scale(1.1);
+}
+
+/* Bouton "Voir Absence par Employés" */
+.btn-outline-primary {
+  background-color: transparent;
+  border: 2px solid #5b94e9;
+  color: #5b94e9;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #5b94e9;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary i {
+  font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section {
+    padding: 10px;
+  }
+
+  .table thead th {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .table tbody td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn-action {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  .btn-outline-primary {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+  
+}

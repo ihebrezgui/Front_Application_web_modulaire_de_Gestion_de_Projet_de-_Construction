@@ -1,0 +1,53 @@
+<div class="container">
+  <h2>Suivi des Salaires</h2>
+
+  <!-- Section de filtre -->
+  <div class="filter-container">
+    <label for="startDate">Du:</label>
+    <input type="date" id="startDate" [(ngModel)]="startDate" class="filter-input">
+    <label for="endDate">Au:</label>
+    <input type="date" id="endDate" [(ngModel)]="endDate" class="filter-input">
+    <button (click)="filterByDate()" class="btn btn-primary">Filtrer</button>
+  </div>
+
+  <!-- Tableau des salaires à l'intérieur du conteneur -->
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mois</th>
+          <th>Salaire Brut (TND)</th>
+          <th>Salaire Net (TND)</th>
+          <th>Prime Rendement</th>
+          <th>Prime Heures Supp</th>
+          <th>Cotisation CNSS</th>
+          <th>Cotisation Retraite</th>
+          <th>Impot Revenu</th>
+          <th>Déductions</th>
+          <th>Avance Salaire</th>
+          <th>Salaire Imposable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let salary of salaryHistory">
+          <td>{{ salary.mois }}</td>
+          <td>{{ salary.salaireBrut | number:'1.2-2' }}</td>
+          <td>{{ salary.salaireNet | number:'1.2-2' }}</td>
+          <td>{{ salary.primePerformance | number:'1.2-2' }}</td>
+          <td>{{ salary.primeHeuresSupp | number:'1.2-2' }}</td>
+          <td>{{ salary.cotisationCNSS | number:'1.2-2' }}</td>
+          <td>{{ salary.cotisationRetraite | number:'1.2-2' }}</td>
+          <td>{{ salary.impotRevenu | number:'1.2-2' }}</td>
+          <td>{{ salary.deductions | number:'1.2-2' }}</td>
+          <td>{{ salary.avanceSalaire | number:'1.2-2' }}</td>
+          <td>{{ salary.salaireImposable | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bouton retour -->
+  <button class="btn btn-secondary" routerLink="/salaire">
+    <i class="fas fa-arrow-left"></i> Retour
+  </button>
+</div>
