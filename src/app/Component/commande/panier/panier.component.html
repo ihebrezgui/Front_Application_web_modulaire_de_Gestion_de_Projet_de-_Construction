@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4 text-uppercase font-weight-bold">🛒 Mon Panier</h2>
+
+  <!-- Liste des ressources dans le panier -->
+  <div class="row">
+    <div *ngFor="let item of cartRessources" class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-sm border-0 rounded-lg p-3">
+        
+        <ng-container *ngIf="item.ressource">
+          <img 
+            [src]="'http://localhost:8089/commande/images/' + item.ressource.imageUrl" 
+            alt="Image" 
+            class="card-img-top img-fluid rounded"
+            style="height: 180px; object-fit: cover;"
+          />
+
+          <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold">{{ item.ressource.nomProduit }}</h5>
+            <p class="text-muted">{{ item.ressource.prixUnitaire }}€</p>
+            <span class="text-primary">Quantité: {{ item.quantite }}</span>
+          </div>
+          
+          <div class="card-footer bg-white text-center">
+            <button class="btn btn-danger btn-sm px-3" (click)="removeFromCart(item.ressource.idProduit)">
+              <i class="fas fa-trash-alt"></i> Supprimer
+            </button>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Date de Livraison Prévue -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="dateLivraisonPrevue" class="font-weight-bold">📅 Date de Livraison Prévue</label>
+        <input type="date" id="dateLivraisonPrevue" class="form-control shadow-sm" [(ngModel)]="dateLivraisonPrevue" name="dateLivraisonPrevue" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton pour passer la commande -->
+  <div class="text-center mt-4">
+    <button class="btn btn-success btn-lg shadow-lg px-5" (click)="passerCommande()" [disabled]="cartRessources.length === 0">
+      <i class="fas fa-check-circle"></i> Passer la commande
+    </button>
+  </div>
+</div>

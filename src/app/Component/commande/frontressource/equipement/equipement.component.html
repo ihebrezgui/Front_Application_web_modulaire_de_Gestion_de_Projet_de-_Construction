@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Builderz - Construction Company Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Construction Company Website Template" name="keywords">
+    <meta content="Construction Company Website Template" name="description">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Top Bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="logo">
+                            <a href="index.html">
+                                <h1>Builderz</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-calendar"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Opening Hour</h3>
+                                        <p>Mon - Fri, 8:00 - 9:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-call"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Call Us</h3>
+                                        <p>+012 345 6789</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-send-mail"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Email Us</h3>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- Nav Bar Start -->
+        <div class="nav-bar">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="service.html" class="nav-item nav-link">Service</a>
+                            <a href="team.html" class="nav-item nav-link">Team</a>
+                            <a href="portfolio.html" class="nav-item nav-link">Project</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu">
+                                    <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                    <a href="single.html" class="dropdown-item">Single Page</a>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <div class="ml-auto">
+                            <a class="btn" href="#">Get A Quote</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Our Blog</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Our Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <div class="text-center mb-4">
+                <h2 class="text-uppercase fw-bold">Ressources avec Fournisseur</h2>
+                <p class="text-muted">Découvrez notre sélection de ressources disponibles</p>
+            </div>
+        
+            <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-primary mx-2" [routerLink]="['/panier']">
+                    <i class="fas fa-shopping-cart"></i> Ajouter Ressource
+                </a>
+                <a class="btn btn-secondary mx-2" [routerLink]="['/historique']">
+                    <i class="fas fa-history"></i> Historique
+                </a>
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let ressource of filteredRessources()">
+                    <div *ngIf="ressource.active" class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                        <div class="position-relative">
+                            <img *ngIf="ressource.imageUrl" 
+                                 [src]="'http://localhost:8089/commande/images/' + ressource.imageUrl" 
+                                 alt="Image" class="img-fluid w-100" />
+                            <div *ngIf="!ressource.imageUrl" class="text-center p-3 text-muted">Image non disponible</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">{{ ressource.nomProduit }}</h5>
+                            <p class="text-muted">{{ ressource.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Prix : {{ ressource.prixUnitaire }} €</span>
+                                <span *ngIf="ressource.quantiteDisponible === 0" class="badge bg-danger">Hors stock</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                            <input type="number" 
+                                   [(ngModel)]="quantites[ressource.idProduit ?? 0]" 
+                                   min="1" 
+                                   (ngModelChange)="initQuantite(ressource.idProduit ?? 0)" 
+                                   class="form-control w-25" 
+                                   [disabled]="ressource.quantiteDisponible === 0" />
+                            <button class="btn btn-success" 
+                                    (click)="addToCart(ressource.idProduit ?? 0)" 
+                                    [disabled]="ressource.quantiteDisponible === 0">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+              
+
+    
+        
+    </div>
+   
+</body>
+
+</html>
