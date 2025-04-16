@@ -4,6 +4,7 @@ import { CommandeSerService } from '../CommandeService/commande-ser.service';
 
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-commande-historique',
@@ -15,23 +16,33 @@ export class CommandeHistoriqueComponent implements OnInit {
   sortAscending: boolean = true; 
   EtatCommande = EtatCommande;// Indicateur pour trier
 
-  constructor(private commandeService: CommandeSerService) {}
+  constructor(private commandeService: CommandeSerService,private router: Router) {}
 
   ngOnInit() {
     this.getAllCommandes();
   }
 
   getAllCommandes() {
+    const userId = localStorage.getItem('id');  // Récupérer l'ID de l'utilisateur depuis le localStorage
+  
+    if (!userId) {
+      console.error("ID de l'utilisateur non trouvé dans le localStorage");
+      return;
+    }
+  
     this.commandeService.getAll().subscribe(
       (data: Commande[]) => {
-        this.commandes = data;
-        this.sortByDate(); // Trier par défaut
+        // Filtrer les commandes par l'ID de l'utilisateur
+        this.commandes = data.filter(commande => commande.iduser === Number(userId));
+        this.sortByDate(); // Trier par défaut après filtrage
       },
       error => {
         console.error("Erreur lors de la récupération des commandes", error);
       }
     );
   }
+  
+  
 
   // Fonction pour trier selon la dateCommande
   sortByDate() {
@@ -100,4 +111,6 @@ export class CommandeHistoriqueComponent implements OnInit {
       }
     );
   }
+  suivreLivraison(idCommande: number): void {
+    this.router.navigate(['/tracking', idCommande]);}
 }

@@ -71,6 +71,7 @@ export class CommandeComponent {
     this.commandeService.addCommandeWithRessources(ressources).subscribe(
       (response) => {
         console.log("Commande ajoutée avec succès", response);
+        
         alert("Votre commande a été passée avec succès !");
         this.cartRessources = []; // Vider le panier après la commande
         localStorage.removeItem('cartRessources'); // Nettoyer le stockage local

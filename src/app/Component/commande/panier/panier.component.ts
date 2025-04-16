@@ -58,6 +58,8 @@ export class PanierComponent implements OnInit {
     commande.etatCommande = EtatCommande.EN_COURS;
     commande.dateCommande = new Date();
     commande.dateLivraisonPrevue = this.dateLivraisonPrevue;
+    commande.username = localStorage.getItem('username')?.toString() ?? '';
+    commande.iduser = parseInt(localStorage.getItem('id')?.toString() ?? '0');
   
     this.commandeService.addCommandeWithRessourcesJson(commande).subscribe(
       (response) => {

@@ -15,6 +15,7 @@ import { PanierComponent } from './Component/commande/panier/panier.component';
 import { CommandeHistoriqueComponent } from './Component/commande/commande-historique/commande-historique.component';
 import { EquipementComponent } from './Component/commande/frontressource/equipement/equipement.component';
 import { UtilisateurComponentComponent } from './Component/commande/utilisateur-component/utilisateur-component.component';
+import { MapTrackingComponent } from './Component/commande/map-tracking/map-tracking.component';
 
 const routes: Routes = [
   { path: '', component: CommandeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'historique', component:CommandeHistoriqueComponent },
   { path: 'add-resource', component:AddRessourceComponent }, 
   { path: 'equipement', component:EquipementComponent }, 
+  { path: 'tracking/:id', component: MapTrackingComponent },
   { path: 'login', component:UtilisateurComponentComponent }, 
 ];
 

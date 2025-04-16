@@ -13,10 +13,16 @@ export enum EtatCommande {
   export class Commande {
     constructor(
       public idCommande?: number,
+      public iduser?: number,
       public dateCommande?: Date,
       public dateLivraisonPrevue?: Date,
       public etatCommande?: EtatCommande,
       public ressources?: Ressource[],
+      public clientLat?: number,
+      public  clientLng?: number,
+      public livreurLat?: number,
+      public livreurLng?: number,
+      public  username?: string,
       public imageUrl?: string,
       public ressourcesJson?: string // Ajout du champ ressourcesJson pour stocker les ressources en JSON
     ) {}

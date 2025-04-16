@@ -48,5 +48,14 @@ verifierEtMettreAJourEtatCommandes(): Observable<any> {
 receptionnerCommande(id: number): Observable<any> {
   return this.httpClient.put(`${this.baseUrl}/commandes/${id}/receptionner`, {});
 }
+  // Méthode pour récupérer la position du livreur et du client
+  getCommandePosition(id: number): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/${id}/position`);
+  }
+
+  // Méthode pour récupérer une commande par ID
+  getCommande(id: number): Observable<Commande> {
+    return this.httpClient.get<Commande>(`${this.baseUrl}/${id}`);
+  }
 }
 

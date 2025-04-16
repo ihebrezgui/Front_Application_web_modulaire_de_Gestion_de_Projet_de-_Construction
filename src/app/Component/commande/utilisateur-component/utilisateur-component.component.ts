@@ -165,6 +165,9 @@ export class UtilisateurComponentComponent implements OnInit  {
         }
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', response.username);
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('email', response.email);
+        localStorage.setItem('id', response.id);
         this.router.navigate(['/afficher']);
       },
       (error) => {
