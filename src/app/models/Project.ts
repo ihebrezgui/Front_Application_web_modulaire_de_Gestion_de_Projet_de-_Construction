@@ -3,15 +3,15 @@ export class Project {
     nomProjet!: string;
     descriptionProjet!: string;
     dateDebutProjet?: Date;
-    DateFinProjet?: Date;
+    dateFinProjet?: Date;
     budgetProjet?: number;
     statut?: string;  // Example: "In Progress", "Completed"
   
-    constructor(nomProjet: string, descriptionProjet: string, dateDebutProjet?: Date, DateFinProjet?: Date, budgetProjet?:number,statut?: string) {
+    constructor(nomProjet: string, descriptionProjet: string, dateDebutProjet?: Date, dateFinProjet?: Date, budgetProjet?:number,statut?: string) {
       this.nomProjet = nomProjet;
       this.descriptionProjet = descriptionProjet;
       this.dateDebutProjet = dateDebutProjet;
-      this.DateFinProjet = DateFinProjet;
+      this.dateFinProjet = dateFinProjet;
       this;budgetProjet= budgetProjet;
       this.statut = statut;
     }

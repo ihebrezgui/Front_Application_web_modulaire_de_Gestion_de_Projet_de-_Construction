@@ -40,6 +40,10 @@ export class ApiService {
     return this.http.delete<void>(`${BASE_URL}/delete/${id}`);
   }
 
+  deleteTask(id: number): Observable<void> {
+    return this.http.delete<void>(`${BASE_URL}/deleteTache/${id}`);
+  }
+
   updateProject(id: number, project: Project): Observable<Project> {
     return this.http.put<Project>(`${BASE_URL}/updateProjet/${id}`, project);
   }

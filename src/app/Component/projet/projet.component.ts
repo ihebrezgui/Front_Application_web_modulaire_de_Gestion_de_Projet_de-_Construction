@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Project } from '../../models/Project';
-import { Rapport } from 'src/app/models/Rapport';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,82 +9,116 @@ import { Router } from '@angular/router';
   styleUrls: ['./projet.component.css']
 })
 export class ProjetComponent implements OnInit {
+  projects: Project[] = [];
+  endingSoonProjects: Project[] = [];
+  showAlert: boolean = true;
+  sortDirection: 'asc' | 'desc' = 'asc';
+  dateSortDirection: 'asc' | 'desc' = 'asc';
 
-  projects:any[] = [];
-  selectedProject: Project | null = null; // Store selected project for update
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  constructor(private apiService:ApiService,private router: Router){}
-  
   ngOnInit(): void {
-    this.getProjects();
     this.fetchProjects();
-    
-  } 
-
- // Sort projects by name A-Z
- sortByName() {
-  this.projects.sort((a, b) => {
-    if (a.nomProjet < b.nomProjet) {
-      return -1;
-    }
-    if (a.nomProjet > b.nomProjet) {
-      return 1;
-    }
-    return 0;
-  });
-}
-
-// Sort projects by date (Date Debut)
-sortByDate() {
-  this.projects.sort((a, b) => {
-    const dateA = new Date(a.dateDebutProjet);
-    const dateB = new Date(b.dateDebutProjet);
-    return dateA.getTime() - dateB.getTime();
-  });
-}
-
-  fetchProjects(): void {
-    this.apiService.getProjets().subscribe(
-      (data: Project[]) => this.projects = data,
-      error => console.error('Error fetching projects:', error)
-    );
   }
 
-  deleteProject(id: number): void {
+  fetchProjects(): void {
+    this.apiService.getProjets().subscribe({
+      next: (data: Project[]) => {
+        this.projects = data;
+        this.checkDeadlines();
+      },
+      error: (error) => console.error('Error fetching projects:', error)
+    });
+  }
+
+  checkDeadlines(): void {
+    const today = new Date();
+    this.endingSoonProjects = this.projects.filter(project => {
+      if (!project.dateFinProjet) return false;
+      
+      const endDate = new Date(project.dateFinProjet);
+      const timeDiff = endDate.getTime() - today.getTime();
+      const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      
+      return daysDiff > 0 && daysDiff <= 30;
+    });
+  }
+
+  daysRemaining(endDate: string | Date | undefined): number {
+    if (!endDate) return Infinity; // Return large number if no date
+    const today = new Date();
+    const projectEndDate = new Date(endDate);
+    const timeDiff = projectEndDate.getTime() - today.getTime();
+    return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+
+  sortByName(): void {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.projects.sort((a, b) => {
+      const nameA = a.nomProjet?.toLowerCase() || '';
+      const nameB = b.nomProjet?.toLowerCase() || '';
+      return this.sortDirection === 'asc' 
+        ? nameA.localeCompare(nameB)
+        : nameB.localeCompare(nameA);
+    });
+  }
+
+  sortByDate(): void {
+    this.dateSortDirection = this.dateSortDirection === 'asc' ? 'desc' : 'asc';
+    this.projects.sort((a, b) => {
+      const dateA = a.dateDebutProjet ? new Date(a.dateDebutProjet).getTime() : 0;
+      const dateB = b.dateDebutProjet ? new Date(b.dateDebutProjet).getTime() : 0;
+      return this.dateSortDirection === 'asc' 
+        ? dateA - dateB 
+        : dateB - dateA;
+    });
+  }
+
+  deleteProject(id?: number): void {
+    if (!id) return;
     if (confirm('Are you sure you want to delete this project?')) {
-      this.apiService.deleteProject(id).subscribe(() => {
-        this.projects = this.projects.filter(p => p.idProjet !== id);
+      this.apiService.deleteProject(id).subscribe({
+        next: () => {
+          this.projects = this.projects.filter(p => p.idProjet !== id);
+          this.checkDeadlines();
+        },
+        error: (err) => console.error('Error deleting project:', err)
       });
     }
   }
 
-  private getProjects() {
-    this.apiService.getProjets().subscribe(data => {
-      this.projects = data;
-    });
-  }
-
   navigateToUpdate(project: Project): void {
-    this.apiService.setSelectedProject(project); // Store the selected project
-    this.router.navigate(['/update-projet/:id']); // Navigate to update page
+    if (!project.idProjet) return;
+    this.router.navigate(['/update-projet', project.idProjet]);
   }
 
-  navigateToRapport(project: Project): void {
-    this.apiService.setSelectedProject(project); // Store the selected project
-    this.router.navigate(['/u/:id']); // Navigate to update page
-  }
   navigateToKpi(project: Project): void {
-    this.apiService.setSelectedProject(project); // Store the selected project
-    this.router.navigate(['/kpi', project.idProjet]); // Navigate to KPI page
+    if (!project.idProjet) return;
+    this.router.navigate(['/kpi', project.idProjet]);
   }
+
   navigateToTasks(project: Project): void {
-    this.apiService.setSelectedProject(project); // Store the selected project
-    this.router.navigate(['/tasks', project.idProjet]); // Navigate to tasks page
+    if (!project.idProjet) return;
+    this.router.navigate(['/tasks', project.idProjet]);
   }
 
   navigateToAddTask(project: Project): void {
-    this.apiService.setSelectedProject(project); // Store the selected project
-    this.router.navigate(['/add-task', project.idProjet]); // Navigate to add task page
+    if (!project.idProjet) return;
+    this.router.navigate(['/add-task', project.idProjet]);
   }
 
+  closeAlert(): void {
+    this.showAlert = false;
+  }
+
+  getStatusClass(status?: string): string {
+    if (!status) return 'bg-info';
+    switch(status.toLowerCase()) {
+      case 'completed': return 'bg-success';
+      case 'in progress': return 'bg-warning';
+      case 'pending': return 'bg-secondary';
+      case 'delayed': return 'bg-danger';
+      default: return 'bg-info';
+    }
+  }
 }

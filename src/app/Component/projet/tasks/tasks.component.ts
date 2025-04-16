@@ -40,4 +40,25 @@ export class TaskComponent implements OnInit {
     );
   }
   
+  onDeleteTask(id: number | undefined): void {
+    if (id === undefined) {
+      console.error('Task ID is undefined.');
+      return;
+    }
+  
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.apiService.deleteTask(id).subscribe(
+        () => {
+          this.tasks = this.tasks.filter(task => task.idTache !== id);
+          console.log(`Task with ID ${id} deleted.`);
+        },
+        (error) => {
+          console.error('Error deleting task:', error.message || error);
+        }
+      );
+    }
+  }
+  
+  
+
 }
