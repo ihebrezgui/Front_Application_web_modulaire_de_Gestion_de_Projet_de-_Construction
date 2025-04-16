@@ -164,7 +164,9 @@ export class UtilisateurComponent implements OnInit {
         }
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', response.username);
-        this.router.navigate(['/add-employee']);
+        localStorage.setItem('role', response.role);  // Ajoutez d'autres informations ici
+        localStorage.setItem('email', response.email); // Par exemple, l'email
+        this.router.navigate(['/employees']);
       },
       (error) => {
         console.error('Erreur de connexion :', error);

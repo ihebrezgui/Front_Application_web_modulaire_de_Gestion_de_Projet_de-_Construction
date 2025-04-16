@@ -12,7 +12,8 @@ export class EmployeedetailsComponent {
   employe: Employe | null = null;
   loading = false;
   error: string | null = null;
-
+  username: string = '';
+  role: string = '';
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeServiceService
@@ -23,6 +24,8 @@ export class EmployeedetailsComponent {
     if (employeId) {
       this.getEmployeeDetails(parseInt(employeId, 10));
     }
+    this.username = localStorage.getItem('username') || '';
+    this.role = localStorage.getItem('role') || '';
   }
 
   getEmployeeDetails(id: number) {

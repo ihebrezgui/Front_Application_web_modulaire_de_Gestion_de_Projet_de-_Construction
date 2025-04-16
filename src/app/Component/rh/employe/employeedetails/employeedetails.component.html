@@ -234,8 +234,8 @@
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
- <!-- ======= Sidebar ======= -->
- <aside id="sidebar" class="sidebar">
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -247,19 +247,19 @@
       </a>
     </li>
 
-    <!-- Employés -->
+    <!-- Employés (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#employee-nav">
         <i class="bi bi-people"></i><span>Employés</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="employee-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li><a routerLink="/"><i class="bi bi-circle"></i><span>Liste Employés</span></a></li>
-        <li><a routerLink="/add-employee"><i class="bi bi-circle"></i><span>Ajouter Employé</span></a></li>
+        <li *ngIf="role === 'ADMIN'"><a routerLink="/add-employee"><i class="bi bi-circle"></i><span>Ajouter Employé</span></a></li>
       </ul>
     </li>
 
-    <!-- Absences -->
-    <li class="nav-item">
+    <!-- Absences (visible uniquement pour les ADMIN) -->
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#absence-nav">
         <i class="bi bi-calendar-x"></i><span>Absences</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -269,8 +269,8 @@
       </ul>
     </li>
 
-    <!-- Performances -->
-    <li class="nav-item">
+    <!-- Performances (visible uniquement pour les ADMIN) -->
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#performance-nav">
         <i class="bi bi-speedometer2"></i><span>Performances</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -281,7 +281,7 @@
       </ul>
     </li>
 
-    <!-- Salaires -->
+    <!-- Salaires (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" routerLink="/salaire">
         <i class="bi bi-cash-stack"></i>
@@ -289,18 +289,17 @@
       </a>
     </li>
 
-    <!-- Demandes -->
+    <!-- Demandes (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#demande-nav">
         <i class="bi bi-file-earmark-text"></i><span>Demandes</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="demande-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li><a routerLink="/demande"><i class="bi bi-circle"></i><span>Gérer Demandes</span></a></li>
-       
       </ul>
     </li>
 
-    <!-- Disponibilité -->
+    <!-- Disponibilité (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" routerLink="/disponibilite">
         <i class="bi bi-clipboard-check"></i>
@@ -308,7 +307,7 @@
       </a>
     </li>
 
-    <!-- Recrutement -->
+    <!-- Recrutement (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" routerLink="/recrutement">
         <i class="bi bi-person-plus"></i>
@@ -316,10 +315,9 @@
       </a>
     </li>
 
-
   </ul>
 
-</aside><!-- End Sidebar-->
+</aside><!-- End Sidebar -->
 
   <main id="main" class="main">
 
@@ -334,85 +332,82 @@
       </nav>
     </div><!-- End Page Title -->
     <div class="employee-details-container">
-       
-      
-        <div class="employee-details-container">
-          <h1 class="employee-name">{{ employe?.nom }} {{ employe?.prenom }}</h1>
-          <h2 class="employee-position">{{ employe?.poste }}</h2>
-      
-          <div class="details-grid">
-            <!-- Informations personnelles -->
-            <div class="details-section">
-              <h3 class="section-title">Informations personnelles</h3>
-              <div class="info-item">
-                <span class="info-label">Date de naissance:</span>
-                <span class="info-value">{{ employe?.dateNaissance | date:'dd/MM/yyyy' }}</span>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Email:</span>
-                <span class="info-value">{{ employe?.email }}</span>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Téléphone:</span>
-                <span class="info-value">{{ employe?.telephone }}</span>
-              </div>
-            </div>
-      
-            <!-- Heures supplémentaires et avances -->
-            <div class="details-section">
-              <h3 class="section-title">Heures supplémentaires et avances</h3>
-              <div class="info-item">
-                <span class="info-label">Heures supplémentaires:</span>
-                <span class="info-value">{{ employe?.heuresSupp }} hrs</span>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Avance salaire:</span>
-                <span class="info-value">{{ employe?.avanceSalaire | number:'1.2-2' }} TND</span>
-              </div>
-            </div>
-      
-            <!-- Informations professionnelles -->
-            <div class="details-section">
-              <h3 class="section-title">Informations professionnelles</h3>
-              <div class="info-item">
-                <span class="info-label">Date d'embauche:</span>
-                <span class="info-value">{{ employe?.dateEmbauche | date:'dd/MM/yyyy' }}</span>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Salaire:</span>
-                <span class="info-value">{{ employe?.salaire | number:'1.2-2' }} TND</span>
-              </div>
-            </div>
+      <h1 class="employee-name">{{ employe?.nom }} {{ employe?.prenom }}</h1>
+      <h2 class="employee-position">{{ employe?.poste }}</h2>
+    
+      <div class="details-grid">
+        <!-- Informations personnelles -->
+        <div class="details-section">
+          <h3 class="section-title">Informations personnelles</h3>
+          <div class="info-item">
+            <span class="info-label">Date de naissance:</span>
+            <span class="info-value">{{ employe?.dateNaissance | date:'dd/MM/yyyy' }}</span>
           </div>
-      
-          <!-- Gestion des absences -->
-          <div class="absence-management">
-            <h3 class="section-title">Gestion des absences</h3>
-            <div class="absence-actions">
-              <!-- Ajouter une absence -->
-              <button
-                class="btn btn-add-absence"
-                [routerLink]="['/addabsence', employe?.id]"
-                title="Ajouter une absence"
-              >
-                <i class="fas fa-user-plus"></i>
-                <span>Ajouter une absence</span>
-              </button>
-      
-              <!-- Voir les absences -->
-              <button
-              class="btn btn-view-absence"
-              [routerLink]="['/absences', employe?.id]"
-              title="Voir les absences"
-            >
-              <i class="fas fa-clipboard-check"></i>
-              <span>Voir les absences</span>
-            </button>
-            </div>
+          <div class="info-item">
+            <span class="info-label">Email:</span>
+            <span class="info-value">{{ employe?.email }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Téléphone:</span>
+            <span class="info-value">{{ employe?.telephone }}</span>
+          </div>
+        </div>
+    
+        <!-- Heures supplémentaires et avances -->
+        <div class="details-section">
+          <h3 class="section-title">Heures supplémentaires et avances</h3>
+          <div class="info-item">
+            <span class="info-label">Heures supplémentaires:</span>
+            <span class="info-value">{{ employe?.heuresSupp }} hrs</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Avance salaire:</span>
+            <span class="info-value">{{ employe?.avanceSalaire | number:'1.2-2' }} TND</span>
+          </div>
+        </div>
+    
+        <!-- Informations professionnelles -->
+        <div class="details-section">
+          <h3 class="section-title">Informations professionnelles</h3>
+          <div class="info-item">
+            <span class="info-label">Date d'embauche:</span>
+            <span class="info-value">{{ employe?.dateEmbauche | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Salaire:</span>
+            <span class="info-value">{{ employe?.salaire | number:'1.2-2' }} TND</span>
           </div>
         </div>
       </div>
-      
+    
+      <!-- Gestion des absences -->
+      <div class="absence-management">
+        <h3 class="section-title">Gestion des absences</h3>
+        <div class="absence-actions">
+          <!-- Ajouter une absence, visible uniquement pour l'admin -->
+          <button
+            *ngIf="role === 'ADMIN'" 
+            class="btn btn-add-absence"
+            [routerLink]="['/addabsence', employe?.id]"
+            title="Ajouter une absence"
+          >
+            <i class="fas fa-user-plus"></i>
+            <span>Ajouter une absence</span>
+          </button>
+    
+          <!-- Voir les absences, accessible à tous -->
+          <button
+            class="btn btn-view-absence"
+            [routerLink]="['/absences', employe?.id]"
+            title="Voir les absences"
+          >
+            <i class="fas fa-clipboard-check"></i>
+            <span>Voir les absences</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
     
 
   </main>

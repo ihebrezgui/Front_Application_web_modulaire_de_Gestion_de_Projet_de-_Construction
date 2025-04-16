@@ -12,6 +12,8 @@ export class ListPerAllComponent {
   performances: any[] = [];
   employeeId!: number;
   selectedPerformance: any = null;
+  role: string = '';  // Variable pour le rôle de l'utilisateur
+  username: string = '';  // Variable pour le username
 
   constructor(
     private performanceService: PerformanceServiceService,
@@ -22,9 +24,13 @@ export class ListPerAllComponent {
   ngOnInit(): void {
     this.employeeId = Number(this.route.snapshot.paramMap.get('id')); 
     this.getPerformances();
+    this.username = localStorage.getItem('username') || '';
+    this.role = localStorage.getItem('role') || '';
   }
 
   // Charger les performances d'un employé
+
+  
   getPerformances(): void {
     this.performanceService.getAll().subscribe(
       (data) => {

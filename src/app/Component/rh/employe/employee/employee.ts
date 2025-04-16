@@ -10,5 +10,6 @@ export class Employe {
     salaire!: number;
     heuresSupp!: number;
     avanceSalaire!: number;
+  
   }
   

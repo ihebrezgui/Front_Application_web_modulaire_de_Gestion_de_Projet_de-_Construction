@@ -10,15 +10,37 @@ export class RecrutementBackComponent implements OnInit {
   recrutements: any[] = [];
   selectedCommentaire: string = '';
   selectedRecrutementId: number | null = null;
-
+  username: string = '';  // Variable pour l'username de l'utilisateur
+  role: string = '';  // Variable pour le rôle de l'utilisateur
   constructor(private recrutementService: RecrutementService) { }
 
   ngOnInit(): void {
     this.getRecrutements();
+    this.username = localStorage.getItem('username') || '';
+    this.role = localStorage.getItem('role') || '';
   }
 
   // Récupérer toutes les demandes
-  getRecrutements(): void {
+
+    // Récupérer les recrutements
+    getRecrutements(): void {
+      this.recrutementService.getAllRecrutements().subscribe(
+        (data: any[]) => {  // Typage du retour comme `any[]`
+          if (this.role === 'ADMIN') {
+            // Si l'utilisateur est un admin, afficher tous les recrutements
+            this.recrutements = data;
+          } else {
+            // Si l'utilisateur n'est pas un admin, filtrer par username
+            this.recrutements = data.filter(recrutement => recrutement.nom === this.username);
+          }
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des recrutements', error);
+        }
+      );
+    }
+  
+  /*getRecrutements(): void {
     this.recrutementService.getAllRecrutements().subscribe(
       (data) => {
         this.recrutements = data;
@@ -27,7 +49,7 @@ export class RecrutementBackComponent implements OnInit {
         console.error('Erreur lors de la récupération des recrutements', error);
       }
     );
-  }
+  }*/
 
   // Supprimer une demande de recrutement
   deleteRecrutement(id: number): void {

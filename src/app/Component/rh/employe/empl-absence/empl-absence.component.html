@@ -244,7 +244,7 @@
   </header><!-- End Header -->
 
  <!-- ======= Sidebar ======= -->
- <aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar">
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -256,19 +256,19 @@
       </a>
     </li>
 
-    <!-- Employés -->
+    <!-- Employés (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#employee-nav">
         <i class="bi bi-people"></i><span>Employés</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="employee-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li><a routerLink="/"><i class="bi bi-circle"></i><span>Liste Employés</span></a></li>
-        <li><a routerLink="/add-employee"><i class="bi bi-circle"></i><span>Ajouter Employé</span></a></li>
+        <li *ngIf="role === 'ADMIN'"><a routerLink="/add-employee"><i class="bi bi-circle"></i><span>Ajouter Employé</span></a></li>
       </ul>
     </li>
 
-    <!-- Absences -->
-    <li class="nav-item">
+    <!-- Absences (visible uniquement pour les ADMIN) -->
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#absence-nav">
         <i class="bi bi-calendar-x"></i><span>Absences</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -278,8 +278,8 @@
       </ul>
     </li>
 
-    <!-- Performances -->
-    <li class="nav-item">
+    <!-- Performances (visible uniquement pour les ADMIN) -->
+    <li class="nav-item" *ngIf="role === 'ADMIN'">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#performance-nav">
         <i class="bi bi-speedometer2"></i><span>Performances</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -290,7 +290,7 @@
       </ul>
     </li>
 
-    <!-- Salaires -->
+    <!-- Salaires (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" routerLink="/salaire">
         <i class="bi bi-cash-stack"></i>
@@ -298,18 +298,17 @@
       </a>
     </li>
 
-    <!-- Demandes -->
+    <!-- Demandes (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-toggle="collapse" href="#demande-nav">
         <i class="bi bi-file-earmark-text"></i><span>Demandes</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="demande-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li><a routerLink="/demande"><i class="bi bi-circle"></i><span>Gérer Demandes</span></a></li>
-       
       </ul>
     </li>
 
-    <!-- Disponibilité -->
+    <!-- Disponibilité (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" routerLink="/disponibilite">
         <i class="bi bi-clipboard-check"></i>
@@ -317,7 +316,7 @@
       </a>
     </li>
 
-    <!-- Recrutement -->
+    <!-- Recrutement (visible pour tous) -->
     <li class="nav-item">
       <a class="nav-link collapsed" routerLink="/recrutement">
         <i class="bi bi-person-plus"></i>
@@ -325,10 +324,9 @@
       </a>
     </li>
 
-
   </ul>
 
-</aside><!-- End Sidebar-->
+</aside><!-- End Sidebar -->
 
   <main id="main" class="main">
 

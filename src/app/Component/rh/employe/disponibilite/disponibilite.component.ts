@@ -62,6 +62,7 @@ export class DisponibiliteComponent implements OnInit {
         }
       });
     }
+
   }
 
   
@@ -86,6 +87,25 @@ getDisponibilitePourcentage(poste: string): number {
    onPosteChange(): void {
     this.filterPostes();
   }
+
+getTotalEmployes(): number {
+  return Object.values(this.totalEmployeesParPoste).reduce((a, b) => a + b, 0);
+}
+
+getTotalDisponibles(): number {
+  let total = 0;
+  for (const [poste, employes] of Object.entries(this.filteredPostesDisponibles)) {
+    if (!employes.includes('Aucun dispo')) {
+      total += employes.length;
+    }
+  }
+  return total;
+}
+
+getTauxDisponibilite(): number {
+  const total = this.getTotalEmployes();
+  return total > 0 ? Math.round((this.getTotalDisponibles() / total) * 100) : 0;
+}
 
   
 }

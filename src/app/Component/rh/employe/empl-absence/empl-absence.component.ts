@@ -11,7 +11,8 @@ import { AbsenceServiceService } from '../../absence/absence-service.service';
 export class EmplAbsenceComponent {
   employeId!: number;
   absences: any[] = [];
-
+  username: string = '';
+role: string = '';
   constructor(
     private route: ActivatedRoute,
     private absenceService: AbsenceServiceService
@@ -20,6 +21,8 @@ export class EmplAbsenceComponent {
   ngOnInit(): void {
     this.employeId = +this.route.snapshot.paramMap.get('id')!; 
     this.loadAbsences();
+      this.username = localStorage.getItem('username') || '';
+    this.role = localStorage.getItem('role') || '';
   }
 
   loadAbsences() {

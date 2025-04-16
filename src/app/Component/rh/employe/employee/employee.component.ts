@@ -17,6 +17,9 @@ export class EmployeeComponent implements OnInit {
   loading = false;
   error: string | null = null;
   employeeStats: any[] = [];
+  username: string = '';
+role: string = '';
+
   constructor(
     private employeeService: EmployeeServiceService,
     private router: Router, 
@@ -29,10 +32,33 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.username = localStorage.getItem('username') || '';
+    this.role = localStorage.getItem('role') || '';
     this.getAllEmployes();
   }
 
   getAllEmployes() {
+    this.loading = true;
+    this.error = null;
+  
+    this.employeeService.getempList().subscribe({
+      next: (data: Employe[]) => {
+        if (this.role === 'ADMIN') {
+          this.employee = data;
+        } else {
+          this.employee = data.filter(emp => emp.nom === this.username);
+        }
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = "Erreur lors de la récupération des employés";
+        console.error(this.error, error);
+        this.loading = false;
+      }
+    });
+  }
+
+  /*getAllEmployes() {
     this.loading = true;
     this.error = null;
     
@@ -48,7 +74,7 @@ export class EmployeeComponent implements OnInit {
       }
     });
   }
-
+*/
   editEmploye(id: number) {
     this.router.navigate(['/update-employee', id]);
   }

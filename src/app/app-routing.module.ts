@@ -24,6 +24,7 @@ import { UtilisateurComponent } from './Component/user/utilisateur.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeComponent }, 
+  { path: 'employees', component: EmployeeComponent },
   { path: 'add-employee', component: AddemployeeComponent},
   { path: 'performance', component: PerformanceComponent }, 
   { path: 'update-employee/:id', component: UpdateemployeeComponent },

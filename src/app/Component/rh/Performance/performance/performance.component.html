@@ -333,18 +333,16 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
-
+    
           <div class="card">
             <div class="card-body">  
               <div class="table-wrapper">
                 <table class="table datatable">
                   <thead>
                     <tr>
-                     
                       <th>Nom</th>
                       <th>Prénom</th>
                       <th>Date de Naissance</th>
@@ -352,12 +350,11 @@
                       <th>Email</th>
                       <th>Téléphone</th>
                       <th>Poste</th>
-                      <th>Actions</th>
+                      <th *ngIf="role === 'ADMIN'">Actions</th> <!-- Affichage conditionnel de la colonne "Actions" -->
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let employe of employee">
-                     
                       <td>{{ employe.nom }}</td>
                       <td>{{ employe.prenom }}</td>
                       <td>{{ employe.dateNaissance }}</td>
@@ -365,21 +362,22 @@
                       <td>{{ employe.email }}</td>
                       <td>{{ employe.telephone }}</td>
                       <td>{{ employe.poste }}</td>
-                      <td>
+                      <td *ngIf="role === 'ADMIN'">
                         <button class="btn btn-performance" [routerLink]="['/add-performance', employe.id]">
                           <i class="fas fa-plus-circle"></i> Ajouter Une Note
                         </button>
-                     
+                      </td> <!-- Affichage conditionnel du bouton -->
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-
+    
         </div>
       </div>
     </section>
+    
 
   </main>
 
