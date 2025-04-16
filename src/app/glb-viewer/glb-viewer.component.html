@@ -1,0 +1,39 @@
+<div #rendererContainer class="renderer-container"></div>
+
+<!-- Material Selection Panel -->
+<div class="material-panel" [class.visible]="showColorPanel">
+  <h3>Material Options</h3>
+  
+  <h4>Colors</h4>
+  <div class="color-options">
+    <div *ngFor="let color of colorOptions" 
+         class="color-option" 
+         [style.background]="color"
+         (click)="applyColor(color, $event)"></div>
+  </div>
+  
+  <h4>Textures</h4>
+  <div class="material-option"
+       *ngFor="let mat of materialOptions"
+       (click)="applyTexture(mat, $event)">
+    <img [src]="mat.texture" [alt]="mat.name" />
+    <span>{{ mat.name }} ({{ mat.price | currency }}/m²)</span>
+  </div>
+  
+  <button class="close-button" (click)="closeColorPanel()">Close Panel</button>
+</div>
+
+<!-- Info Panel -->
+<div class="info-panel" [class.visible]="showInfoPanel" [style.left.px]="infoPanelPosition.x" [style.top.px]="infoPanelPosition.y">
+  <h3>Surface Information</h3>
+  <div *ngIf="selectedObject" class="selected-object-info">
+    <p>Selected: {{ selectedObject.name || 'Untitled Object' }}</p>
+    <p>Surface Area: {{ currentArea.toFixed(2) }} m²</p>
+    <p *ngIf="selectedMaterial">
+      Material: {{ selectedMaterial.name }}<br>
+      Price: {{ selectedMaterial.price | currency }}/m²
+    </p>
+    <p class="total-price">Total: {{ currentPrice | currency }}</p>
+  </div>
+  <button class="close-button" (click)="showInfoPanel = false">Close</button>
+</div>
