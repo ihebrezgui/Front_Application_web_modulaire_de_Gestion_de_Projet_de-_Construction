@@ -1,0 +1,43 @@
+/* Exemple de CSS pour la page Paiment */
+.portfolio-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .portfolio-img:hover .portfolio-overlay {
+    opacity: 1;
+  }
+  
+  .portfolio-text {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .btn {
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  

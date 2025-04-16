@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>Ajouter une Facture</h2>
+    <form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Montant Total</label>
+        <input type="number" class="form-control" formControlName="montantTotal" required />
+        <div *ngIf="factureForm.get('montantTotal')?.touched && factureForm.get('montantTotal')?.errors" class="text-danger">
+          <span *ngIf="factureForm.get('montantTotal')?.hasError('required')">Le montant total est requis.</span>
+          <span *ngIf="factureForm.get('montantTotal')?.hasError('min')">Le montant doit être supérieur à 0.</span>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Référence</label>
+        <input type="text" class="form-control" formControlName="reference" required />
+        <div *ngIf="factureForm.get('reference')?.touched && factureForm.get('reference')?.errors" class="text-danger">
+          <span *ngIf="factureForm.get('reference')?.hasError('required')">La référence est requise.</span>
+          <span *ngIf="factureForm.get('reference')?.hasError('pattern')">Format invalide (lettres, chiffres, tirets uniquement).</span>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Date d'Émission</label>
+        <input type="date" class="form-control" formControlName="dateEmission" required [attr.min]="today" />
+        <div *ngIf="factureForm.get('dateEmission')?.touched && factureForm.get('dateEmission')?.errors" class="text-danger">
+          <span *ngIf="factureForm.get('dateEmission')?.hasError('required')">La date d'émission est requise.</span>
+          <span *ngIf="factureForm.get('dateEmission')?.hasError('invalidDate')">La date ne peut pas être passée.</span>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Statut</label>
+        <select class="form-control" formControlName="statut" required>
+          <option *ngFor="let s of statut" [value]="s">{{ s }}</option>
+        </select>
+        <div *ngIf="factureForm.get('statut')?.touched && factureForm.get('statut')?.hasError('required')" class="text-danger">
+          Le statut est requis.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Description</label>
+        <select class="form-control" formControlName="description" required>
+          <option *ngFor="let d of description" [value]="d">{{ d }}</option>
+        </select>
+        <div *ngIf="factureForm.get('description')?.touched && factureForm.get('description')?.hasError('required')" class="text-danger">
+          La description est requise.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="factureForm.invalid">Ajouter</button>
+    </form>
+  </div>
+  

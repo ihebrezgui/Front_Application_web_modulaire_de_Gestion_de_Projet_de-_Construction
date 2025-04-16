@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <h2>Modifier le Paiement</h2>
+  
+    <form [formGroup]="paiementForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="montantPaye" class="form-label">Montant Payé</label>
+        <input type="number" class="form-control" id="montantPaye" formControlName="montantPaye" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="datePaiement" class="form-label">Date de Paiement</label>
+        <input type="date" class="form-control" id="datePaiement" formControlName="datePaiement" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="modePaiement" class="form-label">Mode de Paiement</label>
+        <select class="form-control" id="modePaiement" formControlName="modePaiement" required>
+          <option value="Full">Full</option>
+          <option value="Echeance">Echeance</option>
+        </select>
+      </div>
+  
+      <div class="mb-3" *ngIf="paiementForm.get('modePaiement')?.value === 'Echeance'">
+        <label for="nbreEcheances" class="form-label">Nombre d'Échéances</label>
+        <input type="number" class="form-control" id="nbreEcheances" formControlName="nbreEcheances" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+      
+    </form>
+  </div>
+  
