@@ -1,0 +1,182 @@
+/* Icône de l'œil pour afficher les détails */
+.view-icon {
+    color: #007bff;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .view-icon:hover {
+    color: #0056b3;
+  }
+  
+  /* Empêcher le débordement du texte dans la modale */
+  .commentaire-modal {
+    max-height: 300px; /* Limite la hauteur */
+    overflow-y: auto;  /* Active le défilement si le texte est trop long */
+    word-wrap: break-word; /* Coupe les mots longs pour éviter le dépassement */
+    white-space: pre-wrap; /* Garde les retours à la ligne */
+    padding: 10px;
+  }
+  
+  
+  .comment-box {
+    max-height: 300px;  /* Limite la hauteur maximale du conteneur */
+    overflow-y: auto;   /* Ajoute une barre de défilement verticale si le texte est trop long */
+    word-wrap: break-word; /* Permet de couper les mots longs pour ne pas déborder */
+  }
+  
+/* Styles pour le titre */
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Styles pour la section */
+.section {
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* Styles pour la carte */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles pour le tableau */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Permet le défilement horizontal sur les petits écrans */
+}
+
+/* Styles pour le tableau */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.table th {
+    background-color: #5b94e9; /* Couleur bleue pour l'en-tête */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.table tr:hover {
+    background-color: #f1f3f5; /* Couleur de fond au survol */
+    transition: background-color 0.3s ease;
+}
+
+/* Styles pour les badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* Couleurs des badges en fonction du type de demande */
+.badge-recrutement {
+    background-color: #28a745; 
+    color: #ffffff;
+}
+
+.badge-stage {
+    background-color: #17a2b8; 
+    color: #ffffff;
+}
+
+.badge-autre {
+    background-color: #6c757d; 
+    color: #ffffff;
+}
+
+.badge-secondary {
+    background-color: #6c757d; 
+    color: #ffffff;
+}
+
+/* Styles pour l'icône Supprimer */
+.delete-icon {
+    font-size: 18px;
+    color: #dc3545; /* Rouge */
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.delete-icon:hover {
+    color: #c82333; /* Rouge plus foncé */
+    transform: scale(1.1); /* Légère augmentation de taille au survol */
+}
+
+/* Styles pour l'icône Télécharger */
+.btn-info i {
+    transition: transform 0.3s ease;
+}
+
+.btn-info:hover i {
+    transform: scale(1.2); /* Agrandissement de l'icône lors du survol */
+}
+
+/* Effet de mouvement sur le container de demande */
+.request-item {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.request-item:hover {
+    transform: translateY(-5px); /* Déplacement léger vers le haut au survol */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre portée lors du survol */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .badge {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .delete-icon {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,150 @@
+<div class="container mt-4">
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white">
+      <h2 class="h5 mb-0 text-center text-primary">
+        <i class="bi bi-people-fill me-2"></i>Disponibilité des Employés par Poste
+      </h2>
+    </div>
+
+    <div class="card-body">
+      <!-- Filtre amélioré -->
+      <div class="row mb-4">
+        <div class="col-md-8 mx-auto">
+          <div class="input-group has-validation">
+            <span class="input-group-text bg-light">
+              <i class="bi bi-funnel-fill"></i>
+            </span>
+            <select id="posteSelect" class="form-select" [(ngModel)]="selectedPoste" (change)="onPosteChange()">
+              <option value="">Tous les postes</option>
+              <option *ngFor="let poste of postes" [value]="poste">
+                {{ poste | titlecase }}
+              </option>
+            </select>
+           
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicateur de chargement -->
+      <div *ngIf="!filteredPostesDisponibles" class="text-center py-4">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-3 text-muted">Récupération des données en cours...</p>
+      </div>
+
+      <!-- Visualisation alternative -->
+      <div *ngIf="filteredPostesDisponibles">
+        <!-- Résumé global -->
+        <div class="summary-card mb-4 p-3 bg-light rounded">
+          <div class="row text-center">
+            <div class="col-md-4">
+              <div class="display-5 fw-bold text-primary">{{ getTotalEmployes() }}</div>
+              <div class="text-muted">Total employés</div>
+            </div>
+            <div class="col-md-4">
+              <div class="display-5 fw-bold text-success">{{ getTotalDisponibles() }}</div>
+              <div class="text-muted">Disponibles</div>
+            </div>
+            <div class="col-md-4">
+              <div class="display-5 fw-bold">{{ getTauxDisponibilite() }}%</div>
+              <div class="text-muted">Taux global</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cartes interactives -->
+        <div class="row g-4">
+          <div *ngFor="let poste of (filteredPostesDisponibles | keyvalue)" class="col-12">
+            <div class="card hover-shadow h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h5 class="card-title mb-1">
+                      <i class="bi bi-person-badge-fill me-2"></i>{{ poste.key | titlecase }}
+                    </h5>
+                    <div class="text-muted small">
+                      {{ totalEmployeesParPoste[poste.key] || 0 }} employés • 
+                      <span [ngClass]="{
+                        'text-success': getDisponibilitePourcentage(poste.key) >= 70,
+                        'text-warning': getDisponibilitePourcentage(poste.key) >= 40 && getDisponibilitePourcentage(poste.key) < 70,
+                        'text-danger': getDisponibilitePourcentage(poste.key) < 40
+                      }">
+                        {{ getDisponibilitePourcentage(poste.key) }}% de disponibilité par poste {{ poste.key }}
+                      </span>
+                    </div>
+                  </div>
+                  <span class="badge rounded-pill bg-light text-dark">
+                    {{ !poste.value.includes('Aucun dispo') ? poste.value.length + ' dispo' : 'Indisponible' }}
+                  </span>
+                </div>
+
+                <!-- Barre de progression améliorée -->
+                <div class="progress mt-3 mb-2" style="height: 10px;">
+                  <div class="progress-bar" 
+                    [style.width.%]="getDisponibilitePourcentage(poste.key)"
+                    [ngClass]="{
+                      'bg-success': getDisponibilitePourcentage(poste.key) >= 70,
+                      'bg-warning': getDisponibilitePourcentage(poste.key) >= 40 && getDisponibilitePourcentage(poste.key) < 70,
+                      'bg-danger': getDisponibilitePourcentage(poste.key) < 40
+                    }">
+                  </div>
+                </div>
+
+                <!-- Section dépliante -->
+                <div class="accordion-flush">
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed py-2 px-0 bg-transparent shadow-none" 
+                        type="button" (click)="toggleDisponibles(poste.key)"
+                        [attr.aria-expanded]="showDisponibles[poste.key]">
+                        <span class="small fw-bold">
+                          <i class="bi me-2" 
+                            [ngClass]="showDisponibles[poste.key] ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                          {{ !poste.value.includes('Aucun dispo') ? 'Voir les disponibilités' : 'Détails' }}
+                        </span>
+                      </button>
+                    </h2>
+                    <div [class.show]="showDisponibles[poste.key]" class="accordion-collapse collapse">
+                      <div class="accordion-body px-0 pt-3">
+                        <div *ngIf="!poste.value.includes('Aucun dispo'); else noDispo">
+                          <div class="table-responsive">
+                            <table class="table table-sm table-hover align-middle">
+                              <thead class="table-light">
+                                <tr>
+                                  <th>Nom</th>
+                                  <th>Prénom</th>
+                                  <th>Disponibilité</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let employe of poste.value">
+                                  <td>{{ employe.nom }}</td>
+                                  <td>{{ employe.prenom }}</td>
+                                 
+                                  <td>
+                                    <span class="badge bg-success">Disponible</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <ng-template #noDispo>
+                          <div class="alert alert-warning mb-0">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Aucun employé disponible pour ce poste actuellement
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

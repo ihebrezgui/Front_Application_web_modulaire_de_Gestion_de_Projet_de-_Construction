@@ -1,0 +1,129 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main id="main" class="main">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title mb-4">📋 Add New Project</h5>
+
+      <form (ngSubmit)="addProject()" #projectForm="ngForm" novalidate>
+
+        <div class="row g-3">
+          <!-- Project Name -->
+          <div class="col-md-6">
+            <label for="projectName" class="form-label">Project Name:</label>
+            <input 
+              id="projectName"
+              type="text"
+              class="form-control" 
+              name="name" 
+              [(ngModel)]="newProject.nomProjet" 
+              #name="ngModel" 
+              required>
+            <div *ngIf="name.invalid && name.touched" class="invalid-feedback d-block">
+              Project name is required.
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="col-md-6">
+            <label for="projectDescription" class="form-label">Project Description:</label>
+            <input 
+              id="projectDescription"
+              type="text"
+              class="form-control" 
+              name="description" 
+              [(ngModel)]="newProject.descriptionProjet" 
+              #description="ngModel" 
+              required>
+            <div *ngIf="description.invalid && description.touched" class="invalid-feedback d-block">
+              Description is required.
+            </div>
+          </div>
+
+          <!-- Start Date -->
+          <div class="col-md-6">
+            <label for="startDate" class="form-label">Start Date:</label>
+            <input 
+              id="startDate"
+              type="date" 
+              class="form-control" 
+              name="startDate" 
+              [(ngModel)]="newProject.dateDebutProjet" 
+              #startDate="ngModel" 
+              required>
+            <div *ngIf="startDate.invalid && startDate.touched" class="invalid-feedback d-block">
+              Start date is required.
+            </div>
+          </div>
+
+          <!-- End Date -->
+          <div class="col-md-6">
+            <label for="endDate" class="form-label">End Date:</label>
+            <input 
+              id="endDate"
+              type="date" 
+              class="form-control" 
+              name="endDate" 
+              [(ngModel)]="newProject.dateFinProjet" 
+              #endDate="ngModel" 
+              required>
+            <div *ngIf="endDate.invalid && endDate.touched" class="invalid-feedback d-block">
+              End date is required.
+            </div>
+          </div>
+
+          <!-- Budget -->
+          <div class="col-md-6">
+            <label for="budget" class="form-label">Budget:</label>
+            <input 
+              id="budget"
+              type="number" 
+              class="form-control" 
+              name="budget" 
+              [(ngModel)]="newProject.budgetProjet" 
+              #budget="ngModel" 
+              required 
+              min="0">
+            <div *ngIf="budget.invalid && budget.touched" class="invalid-feedback d-block">
+              Budget must be a positive number.
+            </div>
+          </div>
+
+          <!-- Status -->
+          <div class="col-md-6">
+            <label for="status" class="form-label">Status:</label>
+            <select 
+              id="status"
+              class="form-select" 
+              name="status" 
+              [(ngModel)]="newProject.statut" 
+              #status="ngModel" 
+              required>
+              <option value="" disabled selected>Select status</option>
+              <option value="INPROGRESS">In Progress</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="PENDING">Pending</option>
+            </select>
+            <div *ngIf="status.invalid && status.touched" class="invalid-feedback d-block">
+              Status is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-4 text-end">
+          <button 
+            type="submit" 
+            [disabled]="projectForm.invalid" 
+            class="btn btn-success">
+            <i class="bi bi-plus-circle me-1"></i> Add Project
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

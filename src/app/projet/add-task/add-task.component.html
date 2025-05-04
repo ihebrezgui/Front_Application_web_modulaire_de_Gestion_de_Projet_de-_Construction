@@ -1,0 +1,124 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main id="main" class="main">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title mb-4">📝 Add New Task</h5>
+
+      <form (ngSubmit)="addTask()" #taskForm="ngForm" novalidate>
+
+        <!-- Task Name -->
+        <div class="mb-3">
+          <label for="nomTache" class="form-label">Task Name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nomTache" 
+            name="nomTache" 
+            [(ngModel)]="newTask.nomTache" 
+            required 
+            #nomTache="ngModel">
+          <div *ngIf="nomTache.invalid && nomTache.touched" class="invalid-feedback d-block">
+            Task name is required.
+          </div>
+        </div>
+
+        <!-- Task Description -->
+        <div class="mb-3">
+          <label for="descriptionTache" class="form-label">Task Description</label>
+          <textarea 
+            class="form-control" 
+            id="descriptionTache" 
+            name="descriptionTache" 
+            [(ngModel)]="newTask.descriptionTache" 
+            required 
+            #descriptionTache="ngModel">
+          </textarea>
+          <div *ngIf="descriptionTache.invalid && descriptionTache.touched" class="invalid-feedback d-block">
+            Task description is required.
+          </div>
+        </div>
+
+        <!-- Start Date -->
+        <div class="mb-3">
+          <label for="dateDebutTache" class="form-label">Start Date</label>
+          <input 
+            type="date" 
+            class="form-control" 
+            id="dateDebutTache" 
+            name="dateDebutTache" 
+            [(ngModel)]="newTask.dateDebutTache" 
+            required 
+            #dateDebutTache="ngModel">
+          <div *ngIf="dateDebutTache.invalid && dateDebutTache.touched" class="invalid-feedback d-block">
+            Start date is required.
+          </div>
+        </div>
+
+        <!-- End Date -->
+        <div class="mb-3">
+          <label for="dateFinTache" class="form-label">End Date</label>
+          <input 
+            type="date" 
+            class="form-control" 
+            id="dateFinTache" 
+            name="dateFinTache" 
+            [(ngModel)]="newTask.dateFinTache" 
+            required 
+            #dateFinTache="ngModel">
+          <div *ngIf="dateFinTache.invalid && dateFinTache.touched" class="invalid-feedback d-block">
+            End date is required.
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="mb-3">
+          <label for="progresTache" class="form-label">Progress (%)</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            id="progresTache" 
+            name="progresTache" 
+            [(ngModel)]="newTask.progresTache" 
+            min="0" 
+            max="100"
+            #progresTache="ngModel">
+          <div *ngIf="progresTache.invalid && progresTache.touched" class="invalid-feedback d-block">
+            Progress must be between 0 and 100.
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+          <label for="statut" class="form-label">Status</label>
+          <select 
+            class="form-select" 
+            id="statut" 
+            name="statut" 
+            [(ngModel)]="newTask.statut" 
+            required 
+            #statut="ngModel">
+            <option value="" disabled selected>Select status</option>
+            <option value="PENDING">Pending</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="INPROGRESS">In Progress</option>
+          </select>
+          <div *ngIf="statut.invalid && statut.touched" class="invalid-feedback d-block">
+            Please select a status.
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          class="btn btn-success" 
+          [disabled]="taskForm.invalid">
+          <i class="bi bi-plus-circle me-1"></i> Add Task
+        </button>
+        
+      </form>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

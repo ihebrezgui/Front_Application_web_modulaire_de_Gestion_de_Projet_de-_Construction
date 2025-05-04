@@ -1,0 +1,63 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main id="main" class="main container-fluid py-4">
+  <div class="project-stats card shadow p-4">
+
+    <!-- Project Title -->
+    <h2 class="mb-3">📊 Project KPIs: <strong>{{ projectName }}</strong></h2>
+
+    <!-- Project Status -->
+    <p class="project-status mb-4">
+      Status:
+      <span [ngClass]="{
+          'badge bg-success': projectStatus === 'COMPLETED',
+          'badge bg-warning text-dark': projectStatus === 'PENDING',
+          'badge bg-info text-dark': projectStatus === 'IN_PROGRESS'
+        }">
+        {{ projectStatus }}
+      </span>
+    </p>
+
+    <!-- Charts -->
+    <div class="row mb-5">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="card chart-container p-3">
+          <canvas #kpiChart></canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card chart-container p-3">
+          <canvas id="progressChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI Details -->
+    <div class="row kpi-details">
+      
+      <!-- Task Distribution -->
+      <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+          <h4 class="mb-3">📌 Task Distribution</h4>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Total Tasks: <strong>{{ getMetricValue('Total Tasks') }}</strong></li>
+            <li class="list-group-item">Completed Tasks: <strong>{{ getMetricValue('Completed Tasks') }}</strong></li>
+            <li class="list-group-item">In Progress Tasks: <strong>{{ getMetricValue('In Progress Tasks') }}</strong></li>
+            <li class="list-group-item">Pending Tasks: <strong>{{ getMetricValue('Pending Tasks') }}</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Progress Overview -->
+      <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+          <h4 class="mb-3">📈 Progress Overview</h4>
+          <p>Average Task Progress: <strong>{{ getMetricValue('Average Task Progress') }}</strong></p>
+          <p>Budget Status: <strong>{{ getMetricValue('Budget Status') }}</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>

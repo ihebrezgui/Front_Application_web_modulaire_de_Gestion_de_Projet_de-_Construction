@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Builderz - Construction Company Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Construction Company Website Template" name="keywords">
+    <meta content="Construction Company Website Template" name="description">
+    <!-- Favicon -->
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Top Bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="logo">
+                            <a href="index.html">
+                                <h1>Builderz</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-calendar"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Opening Hour</h3>
+                                        <p>Mon - Fri, 8:00 - 9:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-call"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Call Us</h3>
+                                        <p>+012 345 6789</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="flaticon-send-mail"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Email Us</h3>
+                                        <p>info@example.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- Nav Bar Start -->
+        <div class="nav-bar">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a href="service.html" class="nav-item nav-link">Service</a>
+                            <a href="team.html" class="nav-item nav-link">Team</a>
+                            <a href="portfolio.html" class="nav-item nav-link active">Project</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu">
+                                    <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                    <a href="single.html" class="dropdown-item">Single Page</a>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <div class="ml-auto">
+                            <a class="btn" href="#">Get A Quote</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Our Projects</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Our Projects</a>
+                    </div>
+                    <!-- Message lorsque aucune facture n'est disponible -->
+                    <ng-template #noFactures>
+                        <p>Aucune facture disponible.</p>
+                    </ng-template>
+
+                    <!-- Affichage pendant le chargement -->
+                    <div *ngIf="isLoading">
+                        <p>Chargement des données...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Portfolio Start -->
+        <div class="portfolio">
+            <div class="container">
+              <div class="section-header text-center">
+                <p>Our Projects</p>
+                <h2>Visit Our Projects</h2>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <ul id="portfolio-flters">
+                    <li 
+                      [class.filter-active]="selectedStatut === 'ALL'" 
+                      (click)="filterByStatut('ALL')"
+                    >All</li>
+                    <li 
+                      [class.filter-active]="selectedStatut === 'PAYEE'" 
+                      (click)="filterByStatut('PAYEE')"
+                    >PAYÉE</li>
+                    <li 
+                      [class.filter-active]="selectedStatut === 'EN_ATTENTE'" 
+                      (click)="filterByStatut('EN_ATTENTE')"
+                    >EN ATTENTE</li>
+                    <li 
+                      [class.filter-active]="selectedStatut === 'PARTIELLEMENT_PAYEE'" 
+                      (click)="filterByStatut('PARTIELLEMENT_PAYEE')"
+                    >PARTIELLEMENT PAYÉE</li>
+                  </ul>
+                </div>
+              </div>
+          
+              <div class="row portfolio-container">
+                <div 
+                class="col-lg-4 col-md-6 col-sm-12 mb-4" 
+                *ngFor="let project of filteredFactures">
+              
+                <div class="card shadow-sm border-0 rounded h-100">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-3 text-primary">{{ project.reference }}</h5>
+                    
+                    <ul class="list-unstyled mb-3">
+                      <li><strong>Montant Total:</strong> {{ project.montantTotal }} €</li>
+                      <li><strong>Date d'Émission:</strong> {{ project.dateEmission | date:'mediumDate' }}</li>
+                      <li>
+                        <strong>Statuts de facture</strong> 
+                        <span 
+                          [ngClass]="{
+                            'text-success': project.statut === 'PAYEE',
+                            'text-warning': project.statut === 'EN_ATTENTE',
+                            'text-danger': project.statut === 'PARTIELLEMENT_PAYEE'
+                          }"
+                        >
+                          {{ project.statut }}
+                        </span>
+                      </li>
+                      <li><strong>Description:</strong> {{ project.description }}</li>
+                    </ul>
+              
+                    <a href="#" class="btn btn-outline-primary btn-sm">Voir détails</a>
+                  </div>
+                </div>
+              
+              </div>
+              
+              </div>
+          
+              <div class="row">
+                <div class="col-12 load-more">
+                  <a class="btn" href="#">Load More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        <!-- Portfolio End -->
+
+        <!-- Footer Start -->
+        <div class="footer wow fadeIn" data-wow-delay="0.3s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-contact">
+                            <h2>Office Contact</h2>
+                            <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+                            <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
+                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <div class="footer-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Autres sections du footer ici... -->
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/easing/easing.min.js"></script>
+    <script src="assets/lib/wow/wow.min.js"></script>
+    <script src="assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="assets/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="assets/lib/waypoints/waypoints.min.js"></script>
+    <script src="assets/lib/counterup/counterup.min.js"></script>
+    <script src="assets/lib/slick/slick.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

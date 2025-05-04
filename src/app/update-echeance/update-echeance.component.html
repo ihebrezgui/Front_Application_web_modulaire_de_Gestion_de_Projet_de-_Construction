@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Modifier une Échéance</h2>
+    <form [formGroup]="echeanceForm" (ngSubmit)="updateEcheance()">
+      <div class="form-group">
+        <label for="dateLimite">Date Limite</label>
+        <input type="date" id="dateLimite" formControlName="dateLimite" class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="montantDu">Montant Dû</label>
+        <input type="number" id="montantDu" formControlName="montantDu" class="form-control" min="0.01">
+      </div>
+  
+      <div class="form-group">
+        <label for="statut">Statut</label>
+        <select id="statut" formControlName="statut" class="form-control">
+          <option value="EN_ATTENTE">En Attente</option>
+          <option value="PAYEE">Payée</option>
+          <option value="PARTIELLEMENT_PAYEE">Partiellement Payée</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!echeanceForm.valid">Mettre à jour</button>
+    </form>
+  </div>
+  

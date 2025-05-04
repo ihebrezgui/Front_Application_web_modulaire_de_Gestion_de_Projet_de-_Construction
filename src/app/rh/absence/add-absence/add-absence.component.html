@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <main>
+    <section class="section">
+      <div class="absence-form-container card shadow p-4">
+        <h2 class="text-center mb-4">
+          Ajouter une absence pour <span class="text-primary">{{ employeeName }}</span>
+        </h2>
+
+        <form [formGroup]="absenceForm" (ngSubmit)="onSubmit()">
+          <!-- Date de début -->
+          <div class="form-group mb-3">
+            <label for="dateDebut" class="form-label">
+              <i class="fas fa-calendar-alt"></i> Date début :
+            </label>
+            <input type="date" id="dateDebut" formControlName="dateDebut" class="form-control" required />
+            <small
+              class="text-danger"
+              *ngIf="absenceForm.get('dateDebut')?.touched && absenceForm.get('dateDebut')?.hasError('required')"
+            >
+              La date de début est obligatoire.
+            </small>
+            <small
+              class="text-danger"
+              *ngIf="absenceForm.get('dateDebut')?.touched && absenceForm.get('dateDebut')?.hasError('pattern')"
+            >
+              La date doit être au format YYYY-MM-DD.
+            </small>
+          </div>
+
+          <!-- Date de fin -->
+          <div class="form-group mb-3">
+            <label for="dateFin" class="form-label">
+              <i class="fas fa-calendar-day"></i> Date fin :
+            </label>
+            <input type="date" id="dateFin" formControlName="dateFin" class="form-control" required />
+            <small
+              class="text-danger"
+              *ngIf="absenceForm.get('dateFin')?.touched && absenceForm.get('dateFin')?.hasError('required')"
+            >
+              La date de fin est obligatoire.
+            </small>
+            <small
+              class="text-danger"
+              *ngIf="absenceForm.get('dateFin')?.touched && absenceForm.get('dateFin')?.hasError('pattern')"
+            >
+              La date doit être au format YYYY-MM-DD.
+            </small>
+          </div>
+
+          <!-- Type d'absence -->
+          <div class="form-group mb-3">
+            <label for="type" class="form-label">
+              <i class="fas fa-user-clock"></i> Type d'absence :
+            </label>
+            <select id="type" formControlName="type" class="form-select" (change)="onTypeChange()">
+              <option value="CONGE_PAYE">Congé payé</option>
+              <option value="MALADIE">Maladie</option>
+              <option value="SANS_SOLDE">Sans solde</option>
+              <option value="RETARD">Retard</option>
+            </select>
+          </div>
+
+          <!-- Durée en heures (Affiché uniquement si type = RETARD) -->
+          <div class="form-group mb-3" *ngIf="showDureeHeures">
+            <label for="dureeHeures" class="form-label">
+              <i class="fas fa-hourglass-half"></i> Durée en heures :
+            </label>
+            <input
+              type="number"
+              id="dureeHeures"
+              formControlName="dureeHeures"
+              class="form-control"
+              min="1"
+              required
+            />
+            <small
+              class="text-danger"
+              *ngIf="absenceForm.get('dureeHeures')?.touched && absenceForm.get('dureeHeures')?.hasError('required')"
+            >
+              La durée en heures est obligatoire.
+            </small>
+            <small
+              class="text-danger"
+              *ngIf="absenceForm.get('dureeHeures')?.touched && absenceForm.get('dureeHeures')?.hasError('min')"
+            >
+              La durée doit être d'au moins 1 heure.
+            </small>
+          </div>
+
+          <!-- Bouton d'ajout -->
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-plus-circle"></i> Ajouter Absence
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

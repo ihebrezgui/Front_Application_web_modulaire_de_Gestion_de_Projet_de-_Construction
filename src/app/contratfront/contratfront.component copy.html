@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Builderz - Construction Company Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Construction Company Website Template" name="keywords">
+        <meta content="Construction Company Website Template" name="description">
+
+        <!-- Favicon -->
+       
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <!-- Top Bar Start -->
+            <div class="top-bar">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <h1>Builderz</h1>
+                                    <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="top-bar-item">
+                                        <div class="top-bar-icon">
+                                            <i class="flaticon-calendar"></i>
+                                        </div>
+                                        <div class="top-bar-text">
+                                            <h3>Opening Hour</h3>
+                                            <p>Mon - Fri, 8:00 - 9:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="top-bar-item">
+                                        <div class="top-bar-icon">
+                                            <i class="flaticon-call"></i>
+                                        </div>
+                                        <div class="top-bar-text">
+                                            <h3>Call Us</h3>
+                                            <p>+012 345 6789</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="top-bar-item">
+                                        <div class="top-bar-icon">
+                                            <i class="flaticon-send-mail"></i>
+                                        </div>
+                                        <div class="top-bar-text">
+                                            <h3>Email Us</h3>
+                                            <p>infoexample.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Nav Bar Start -->
+            <div class="nav-bar">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <a href="#" class="navbar-brand">MENU</a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto">
+                                <a href="index.html" class="nav-item nav-link">Home</a>
+                                <a href="about.html" class="nav-item nav-link">About</a>
+                                <a href="service.html" class="nav-item nav-link">Service</a>
+                                <a href="team.html" class="nav-item nav-link">Team</a>
+                                <a href="portfolio.html" class="nav-item nav-link">Project</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                    <div class="dropdown-menu">
+                                        <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                        <a href="single.html" class="dropdown-item">Single Page</a>
+                                    </div>
+                                </div>
+                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            </div>
+                            <div class="ml-auto">
+                                <a class="btn" href="#">Get A Quote</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Nav Bar End -->
+
+
+            <!-- Page Header Start -->
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Single Page</h2>
+                        </div>
+                        <div class="col-12">
+                            <a href="">Home</a>
+                            <a href="">Single Page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Header End -->
+
+            
+<main id="main" class="main" style="min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #f0f0f0;">
+  <div class="container d-flex justify-content-center">
+    <div class="card shadow-lg p-5 border-0" style="border-radius: 25px; background: linear-gradient(135deg, #f8f6f4, #e6f0fa); border: 4px solid #ffd700; width: 100%; max-width: 900px;">
+      
+      <!-- Header with Logo -->
+      <div class="text-center mb-5">
+        <img src="assets/logo.png" alt="Company Logo" style="width: 180px; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
+        <h2 class="text-primary fw-bold mt-3" style="color: #2a2a72; font-size: 3rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">
+          📜 Official Contract Agreement
+        </h2>
+        <p class="text-muted" style="font-size: 1.4rem; font-style: italic; color: #e79f98; letter-spacing: 1px;">A Legally Binding Document – Review with Care</p>
+      </div>
+      
+      <!-- Contract Information Section -->
+      <div class="p-4 border rounded shadow-sm" style="background: linear-gradient(to right, #ffffff, #f7f0eb); border-left: 6px solid #ff6f61;">
+        <h4 class="fw-bold" style="color: #2a2a72; font-size: 1.8rem;">
+          <i class="fas fa-file-contract" style="color: #ffd700;"></i> Contract Information
+        </h4>
+        <hr style="border-color: #ffd700;">
+        <p style="font-size: 1.25rem; color: #333;">
+          This contract is made between <strong style="color: #2a2a72; font-style: italic;">{{ contrat.nomProprietaire }} {{ contrat.prenom_Proprietaire }}</strong>, 
+          the legal owner, and the contracting party. The agreement type is 
+          <span class="fw-bold" style="color: #28a745; font-style: italic;">{{ contrat.type_contrat }}</span>, ensuring full compliance with applicable laws.
+        </p>
+        <p style="font-size: 1.25rem; color: #333;">
+          Contact: <strong style="color: #2a2a72; font-style: italic;">{{ contrat.telephone }}</strong>
+        </p>
+        <p style="font-size: 1.25rem; color: #333;">
+          Effective Date: <span class="fw-bold" style="color: #ff6f61; font-style: italic;">{{ contrat.date_signature | date:'dd MMMM yyyy' }}</span>
+        </p>
+        <p style="font-size: 1.25rem; color: #333;">
+          Status: 
+          <span class="badge fs-5" [ngClass]="{
+            'bg-success': contrat.statut_Contrat === 'signed',
+            'bg-warning': contrat.statut_Contrat === 'pending',
+            'bg-danger': contrat.statut_Contrat === 'rejected'
+          }" style="padding: 8px 15px; border-radius: 20px;">{{ contrat.statut_Contrat | uppercase }}</span>
+        </p>
+      </div>
+      
+      <!-- Legal Provisions Section -->
+      <div class="p-4 mt-4 border rounded shadow-sm" style="background: linear-gradient(to right, #ffffff, #f7f0eb); border-left: 6px solid #e1ccca;">
+        <h4 class="fw-bold" style="color: #2a2a72; font-size: 1.8rem;">
+          <i class="fas fa-balance-scale" style="color: #ffd700;"></i> Legal Provisions
+        </h4>
+        <hr style="border-color: #ffd700;">
+        <p style="font-size: 1.25rem; font-style: italic; color: #555;">
+          This contract is governed by the <strong style="color: #2a2a72;">Insurance Code</strong>. Any disputes must be formally submitted 
+          to the insurer’s headquarters.
+        </p>
+        <p style="font-size: 1.25rem; font-style: italic; color: #555;">
+          In case of legal issues, proceedings shall take place in the jurisdiction of the contract’s execution.
+        </p>
+      </div>
+      
+      <!-- Execution & Signature Section -->
+      <div class="p-4 mt-4 border rounded shadow-sm" style="background: linear-gradient(to right, #ffffff, #f7f0eb); border-left: 6px solid #ff6f61;">
+        <h4 class="fw-bold" style="color: #2a2a72; font-size: 1.8rem;">
+          <i class="fas fa-map-marker-alt" style="color: #ff6f61;"></i> Execution Details
+        </h4>
+        <hr style="border-color: #ffd700;">
+        <p style="font-size: 1.25rem; color: #333;">
+          The contract is officially executed in <strong style="color: #28a745; font-style: italic;">{{ contrat.date_signature }}</strong>, 
+          meeting all legal requirements.
+        </p>
+        
+        <!-- Signatures container -->
+        <div class="w-100 d-flex justify-content-between mt-4">
+          <!-- Admin's Signature -->
+          <div class="text-start" style="flex: 1; margin-right: 25px;">
+            <p class="fw-bold mb-3" style="font-size: 1.6rem; color: #2a2a72;">✍️ Admin's Signature</p>
+            <div class="signature-container" style="display: inline-block; position: relative;">
+              <img *ngIf="contrat.signatureClient" [src]="contrat.signatureClient" alt="Signature" 
+                   style="width: 320px; height: 70px; border-radius: 10px; border: 3px solid #ffd700; background-color: #fff;">
+              <div *ngIf="!contrat.signatureClient" 
+                   style="width: 320px; height: 70px; border-radius: 10px; border: 3px solid #ffd700; background-color: #fff;"></div>
+            </div>
+          </div>
+          
+          <!-- Subscriber's Signature -->
+          <div class="text-end" style="flex: 1; margin-left: 25px;">
+            <p class="fw-bold mb-3" style="font-size: 1.6rem; color: #2a2a72;">✍️ Subscriber's Signature</p>
+            <div class="signature-container" style="display: inline-block; position: relative;">
+              <img *ngIf="contrat.signatureImage" [src]="contrat.signatureImage" alt="Signature" 
+                   style="width: 320px; height: 70px; border-radius: 10px; border: 3px solid #ffd700; background-color: #fff;">
+              <div *ngIf="!contrat.signatureImage" 
+                   style="width: 320px; height: 70px; border-radius: 10px; border: 3px solid #ffd700; background-color: #fff;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-between mt-5">
+        <button class="btn btn-outline-primary rounded-pill px-5 py-2" style="font-size: 1.2rem; border-color: #2a2a72; color: #2a2a72; background: linear-gradient(45deg, #fff, #e6f0fa);">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <div>
+          <button class="btn btn-success rounded-pill px-5 py-2 me-3" data-bs-toggle="modal" data-bs-target="#signatureModal" style="font-size: 1.2rem; background: linear-gradient(45deg, #28a745, #34d058);">
+            <i class="fas fa-check-circle"></i> Sign Contract
+          </button>
+          <button class="btn btn-warning rounded-pill px-5 py-2" style="font-size: 1.2rem; background: linear-gradient(45deg, #ff6f61, #ffd700);">
+            <i class="fas fa-file-pdf"></i> Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+            
+            <!-- Single Post Start-->
+         
+            <!-- Single Post End-->   
+            <div class="modal fade" id="signatureModal" tabindex="-1" aria-labelledby="signatureModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                  <div class="modal-content p-5 shadow-lg rounded-4" 
+                       style="background: linear-gradient(to bottom right, #ffffff, #f1f1f1); border: 1px solid #ddd;">
+                    
+                    <!-- 🏆 Modal Header -->
+                    <div class="modal-header border-0">
+                      <h2 class="modal-title text-dark fw-bold">
+                        ✍️ Digital Signature
+                      </h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+              
+                    <!-- ✒️ Modal Body -->
+                    <div class="modal-body text-center">
+                      <p class="text-secondary fs-5">Please sign below using your mouse, stylus, or touchpad.</p>
+              
+                      <!-- 🖊 Signature Pad with Stylish Border -->
+                      <div class="border border-3 rounded-3 bg-white p-3 shadow-lg" 
+                           style="max-width: 800px; margin: auto; transition: all 0.3s ease;">
+                        <canvas #signaturePad class="w-100 rounded-3" style="height: 250px;"></canvas>
+                      </div>
+              
+                      <!-- 🎛 Action Buttons -->
+                      <div class="d-flex justify-content-center gap-4 mt-4">
+                        <button class="btn btn-lg btn-outline-danger fw-bold px-5 py-2 rounded-pill shadow-sm" 
+                                (click)="clearSignature()" 
+                                style="transition: all 0.3s ease;">
+                          🗑 Clear
+                        </button>
+                        <button class="btn btn-lg btn-success fw-bold px-5 py-2 rounded-pill shadow-sm" 
+                                (click)="saveSignature()" 
+                                data-bs-dismiss="modal"
+                                style="transition: all 0.3s ease;">
+                          ✅ Confirm
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+
+            <!-- Footer Start -->
+            <div class="footer wow fadeIn" data-wow-delay="0.3s">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="footer-contact">
+                                <h2>Office Contact</h2>
+                                <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+                                <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
+                                <p><i class="fa fa-envelope"></i>infoexample.com</p>
+                                <div class="footer-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="footer-link">
+                                <h2>Services Areas</h2>
+                                <a href="">Building Construction</a>
+                                <a href="">House Renovation</a>
+                                <a href="">Architecture Design</a>
+                                <a href="">Interior Design</a>
+                                <a href="">Painting</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="footer-link">
+                                <h2>Useful Pages</h2>
+                                <a href="">About Us</a>
+                                <a href="">Contact Us</a>
+                                <a href="">Our Team</a>
+                                <a href="">Projects</a>
+                                <a href="">Testimonial</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="newsletter">
+                                <h2>Newsletter</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu
+                                </p>
+                                <div class="form">
+                                    <input class="form-control" placeholder="Email here">
+                                    <button class="btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container footer-menu">
+                    <div class="f-menu">
+                        <a href="">Terms of use</a>
+                        <a href="">Privacy policy</a>
+                        <a href="">Cookies</a>
+                        <a href="">Help</a>
+                        <a href="">FQAs</a>
+                    </div>
+                </div>
+                <div class="container copyright">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+
+            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/slick/slick.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </body>
+</html>

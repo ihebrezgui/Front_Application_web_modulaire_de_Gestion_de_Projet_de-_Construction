@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Historique des Commandes</h2>
+
+  <button (click)="sortByDate()">Trier par Date</button>
+  <button (click)="generatePDF()">Télécharger en PDF</button>
+  <button (click)="getCommandesEnRetard()">Afficher les Commandes en Retard</button>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>ID Commande</th>
+        <th>Date Commande</th>
+        <th>État</th>
+        <th>Nombre de Ressources</th>
+        <th>Actions</th> <!-- Colonne pour les actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let commande of commandes">
+        <td>{{ commande.idCommande }}</td>
+        <td>{{ commande.dateCommande | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ commande.etatCommande }}</td>
+        <td>{{ commande.ressourcesJson }}</td>
+        <td>
+          <button  
+          (click)="receptionnerCommande(commande.idCommande ?? 0)" 
+         >
+          Réceptionner
+        </button>
+         <button (click)="suivreLivraison(commande.idCommande ?? 0)">Suivre Livraison</button>
+              </tr>
+    </tbody>
+  </table>
+</div>

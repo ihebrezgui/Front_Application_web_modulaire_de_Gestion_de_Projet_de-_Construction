@@ -1,0 +1,92 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main id="main" class="main">
+  <!-- Deadline Alert -->
+  <div *ngIf="endingSoonProjects.length > 0 && showAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading">⚠️ Approaching Deadlines</h4>
+    <p>These projects are ending soon:</p>
+    <ul>
+      <li *ngFor="let project of endingSoonProjects">
+        <strong>{{ project.nomProjet }}</strong> - 
+        Ends on {{ project.dateFinProjet | date:'mediumDate' }} 
+        ({{ daysRemaining(project.dateFinProjet) }} days remaining)
+      </li>
+    </ul>
+    <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Projects List</h5>
+      
+      <div class="mb-3">
+        <button class="btn btn-outline-primary me-2" (click)="sortByName()">
+          Sort by Name {{ sortDirection === 'asc' ? '↑' : '↓' }}
+        </button>
+        <button class="btn btn-outline-primary" (click)="sortByDate()">
+          Sort by Date {{ dateSortDirection === 'asc' ? '↑' : '↓' }}
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Project Name</th>
+              <th>Description</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Budget</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let project of projects">
+              <td>{{ project.nomProjet }}</td>
+              <td>{{ project.descriptionProjet }}</td>
+              <td>{{ project.dateDebutProjet | date:'mediumDate' }}</td>
+              <td [ngClass]="{'text-danger': daysRemaining(project.dateFinProjet) < 30}">
+                {{ project.dateFinProjet | date:'mediumDate' }}
+                <span *ngIf="daysRemaining(project.dateFinProjet) < 30" class="badge bg-warning ms-2">
+                  {{ daysRemaining(project.dateFinProjet) }}d
+                </span>
+              </td>
+              <td>{{ project.budgetProjet | currency }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusClass(project.statut)">
+                  {{ project.statut }}
+                </span>
+              </td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project.idProjet)" [disabled]="!project.idProjet">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-primary" (click)="navigateToUpdate(project)" [disabled]="!project.idProjet">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-success" [routerLink]="['/add-rapport', project.idProjet]" [disabled]="!project.idProjet">
+                    <i class="bi bi-file-earmark-plus"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" (click)="navigateToKpi(project)" [disabled]="!project.idProjet">
+                    <i class="bi bi-graph-up"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary" (click)="navigateToAddTask(project)" [disabled]="!project.idProjet">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-dark" (click)="navigateToTasks(project)" [disabled]="!project.idProjet">
+                    <i class="bi bi-list-task"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

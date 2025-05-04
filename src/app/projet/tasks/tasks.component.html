@@ -1,0 +1,33 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<main id="main" class="main">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Task Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Progres</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th> <!-- New column -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.nomTache }}</td>
+      <td>{{ task.descriptionTache }}</td>
+      <td>{{ task.dateDebutTache | date }}</td>
+      <td>{{ task.dateFinTache | date }}</td>
+      <td>{{ task.progresTache }}</td>
+      <td>{{ task.statut }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="onDeleteTask(task.idTache)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</main>
+<app-footer></app-footer>

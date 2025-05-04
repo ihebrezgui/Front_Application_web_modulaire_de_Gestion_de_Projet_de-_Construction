@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Authorization Papers - Construction Company</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Authorization Papers for Lands" name="keywords">
+        <meta content="Authorization Papers for Lands" name="description">
+        
+        <!-- Bootstrap CSS (Ensure you include this) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+        <!-- ✅ Inline CSS for Table Styling -->
+        <style>
+            :root {
+                --header-bg-color: #fdbe33;  /* Header color */
+                --row-bg-color: rgb(201, 189, 189); /* Row background */
+                --border-color: #000; /* Border color */
+                --text-color: #333; /* Text color */
+            }
+
+            .table {
+                border: 2px solid var(--border-color);
+                color: var(--text-color);
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table thead tr {
+                background-color: var(--header-bg-color);
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .table tbody tr {
+                background-color: var(--row-bg-color);
+            }
+
+            .table tbody tr:hover {
+                background-color: lightgray;
+            }
+
+            
+            .table th {
+  background-color: #fdbe33 !important; /* Set header background color */
+  color: black; /* Adjust text color if needed */
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  text-align: center;
+}
+
+
+
+
+
+            .table td {
+                border: 1px solid var(--border-color);
+                padding: 10px;
+                text-align: center;
+            }
+
+            /* Button Styling */
+            .btn-custom {
+                background-color: var(--header-bg-color);
+                color: black;
+                font-weight: bold;
+                border-radius: 5px;
+                padding: 8px 15px;
+            }
+
+            .btn-custom:hover {
+                background-color: #ffcc00;
+            }
+
+            /* Centering Images */
+            .image-preview img {
+                max-width: 300px;
+                margin-top: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <!-- Top Bar Start -->
+            <div class="top-bar">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <h1>Builderz</h1>
+                                    <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Nav Bar Start -->
+            <div class="nav-bar">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <a href="#" class="navbar-brand">MENU</a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto">
+                                <a href="index.html" class="nav-item nav-link">Home</a>
+                                <a href="about.html" class="nav-item nav-link">About</a>
+                                <a href="service.html" class="nav-item nav-link">Service</a>
+                                <a href="team.html" class="nav-item nav-link">Team</a>
+                                <a href="portfolio.html" class="nav-item nav-link">Project</a>
+                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            </div>
+                            <div class="ml-auto">
+                                <a class="btn btn-custom" href="#">Get A Quote</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Nav Bar End -->
+
+            <!-- Page Header Start -->
+            <div class="page-header text-center">
+                <div class="container">
+                    <h2>Authorization Papers</h2>
+                    <p><a href="index.html">Home</a> / <a href="authorization.html">Authorization Papers</a></p>
+                </div>
+            </div>
+            <!-- Page Header End -->
+
+            <!-- Terrain Image -->
+            <div class="terrain-image text-center">
+                <h3>Terrain Image:</h3>
+                <img [src]="terrain.imagePath" alt="Terrain Image" class="img-fluid" style="max-width: 300px;">
+            </div>
+
+            <!-- Authorization Papers Section -->
+            <div class="authorization-papers">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <p>Authorization Papers for Lands</p>
+                        <h2>List of Lands with Authorization Status</h2>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type Autorisation</th>
+                                    <th>Statut</th>
+                                    <th>Description</th>
+                                    <th>Upload Image</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let papier of papiers; let i = index">
+                                    <td>{{ papier.type_Autorisation }}</td>
+                                    <td>{{ papier.statut }}</td>
+                                    <td>{{ papier.description }}</td>
+                                    <td class="upload-column">
+                                        <input type="file" (change)="onFileSelected($event, i)" />
+
+                                        <!-- Display existing image if no new image is selected -->
+                                        <div class="image-preview" *ngIf="papier.imagePath && !selectedImages[i]">
+                                            <img [src]="papier.imagePath" alt="Existing Image" />
+                                        </div>
+
+                                        <!-- Display new selected image -->
+                                        <div class="image-preview" *ngIf="selectedImages[i]">
+                                            <img [src]="selectedImages[i]" alt="Selected Image" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer wow fadeIn">
+                <div class="container text-center">
+                    <h2>Office Contact</h2>
+                    <p><i class="fa fa-map-marker-alt"></i> 123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt"></i> +012 345 67890</p>
+                    <p><i class="fa fa-envelope"></i> infoyourdomain.com</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="container text-center mt-3">
+                    <p>&copy; 2025 Your Site Name. All Rights Reserved.</p>
+                </div>
+            </div>
+
+            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+    </body>
+</html>

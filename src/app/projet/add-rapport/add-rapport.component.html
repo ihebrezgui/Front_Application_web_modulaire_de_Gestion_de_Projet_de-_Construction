@@ -1,0 +1,55 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main id="main" class="main">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">📄 Add New Rapport</h5>
+  
+        <form (ngSubmit)="addRapport()" #projectForm="ngForm" novalidate>
+  
+          <!-- Rapport Date -->
+          <div class="mb-3">
+            <label for="dateRapport" class="form-label">Rapport Date:</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="dateRapport" 
+              name="dateRapport" 
+              [(ngModel)]="newRapport.dateRapport" 
+              #dateRapport="ngModel" 
+              required>
+            <div *ngIf="dateRapport.invalid && dateRapport.touched" class="invalid-feedback d-block">
+              Date is required.
+            </div>
+          </div>
+  
+          <!-- Rapport Description -->
+          <div class="mb-3">
+            <label for="descriptionRapport" class="form-label">Project Description:</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="descriptionRapport" 
+              name="descriptionRapport" 
+              [(ngModel)]="newRapport.descriptionRapport" 
+              #descriptionRapport="ngModel" 
+              required>
+            <div *ngIf="descriptionRapport.invalid && descriptionRapport.touched" class="invalid-feedback d-block">
+              Description is required.
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            class="btn btn-primary" 
+            [disabled]="projectForm.invalid">
+            <i class="bi bi-file-earmark-plus me-1"></i> Add Rapport
+          </button>
+          
+        </form>
+      </div>
+    </div>
+  </main>
+  <app-footer></app-footer>
