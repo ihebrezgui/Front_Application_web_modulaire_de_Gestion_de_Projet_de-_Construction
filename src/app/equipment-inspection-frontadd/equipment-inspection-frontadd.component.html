@@ -66,40 +66,7 @@
             </div>
             <!-- Top Bar End -->
 
-            <!-- Nav Bar Start -->
-            <div class="nav-bar">
-                <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-                        <a href="#" class="navbar-brand">MENU</a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto">
-                                <a routerLink="/equipment-inspections" class="nav-item nav-link">Inspection List</a>
-
-                           <!--      <a href="about.html" class="nav-item nav-link">About</a>
-                                <a href="service.html" class="nav-item nav-link">Service</a>
-                                <a href="team.html" class="nav-item nav-link">Team</a>
-                                <a href="portfolio.html" class="nav-item nav-link active">Project</a> -->
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu">
-                                        <a href="blog.html" class="dropdown-item">Blog Page</a>
-                                        <a href="single.html" class="dropdown-item">Single Page</a>
-                                    </div>
-                                </div>
-                                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                            </div>
-                            <div class="ml-auto">
-                                <a class="btn" href="#">Get A Quote</a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            <!-- Nav Bar End -->
+           <app-navbar></app-navbar>
             
             
             <!-- Page Header Start -->
@@ -120,60 +87,72 @@
 
 
             <!-- Portfolio Start -->
-            <div class="container">
-                <h2>Add New Inspection</h2>
-                <form (ngSubmit)="addInspection()">
-              
-                  <!-- Select Item Type -->
-                  <div class="form-group">
-                    <label for="itemType">Item Type</label>
-                    <select id="itemType" [(ngModel)]="itemType" name="itemType" class="form-control" required>
-                      <option value="">Select Type</option>
-                      <option value="EQUIPMENT">Equipment</option>
-                      <option value="PPE">PPE</option>
-                    </select>
-                  </div>
-              
-                  <!-- Select Equipment or PPE -->
-                  <div class="form-group" *ngIf="itemType === 'EQUIPMENT'">
-                    <label for="equipment">Select Equipment</label>
-                    <select id="equipment" [(ngModel)]="selectedItemId" name="selectedItemId" class="form-control" required>
-                      <option *ngFor="let equipment of equipmentList" [value]="equipment.equipment_id">{{ equipment.serialNumber }}</option>
-                    </select>
-                  </div>
-              
-                  <div class="form-group" *ngIf="itemType === 'PPE'">
-                    <label for="ppe">Select PPE</label>
-                    <select id="ppe" [(ngModel)]="selectedItemId" name="selectedItemId" class="form-control" required>
-                      <option *ngFor="let ppe of ppeList" [value]="ppe.ppe_id">{{ ppe.type }}</option>
-                    </select>
-                  </div>
-              
-                  <!-- Inspection Date -->
-                  <div class="form-group">
-                    <label for="inspectionDate">Inspection Date</label>
-                    <input type="date" id="inspectionDate" [(ngModel)]="inspectionDate" name="inspectionDate" class="form-control" required>
-                  </div>
-              
-                  <!-- Remarks -->
-                  <div class="form-group">
-                    <label for="remarks">Remarks</label>
-                    <textarea id="remarks" [(ngModel)]="remarks" name="remarks" class="form-control"></textarea>
-                  </div>
-              
-                  <!-- Result -->
-                  <div class="form-group">
-                    <label for="result">Result</label>
-                    <select id="result" [(ngModel)]="result" name="result" class="form-control" required>
-                      <option value="PASS">Pass</option>
-                      <option value="FAIL">Fail</option>
-                    </select>
-                  </div>
-              
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-              
+           <div class="container mt-5">
+  <div class="card shadow-lg rounded-4 p-4">
+    <h2 class="text-center mb-4">Add New Inspection</h2>
+    <form (ngSubmit)="addInspection()" class="needs-validation" novalidate>
+      
+      <!-- Item Type -->
+      <div class="mb-3">
+        <label for="itemType" class="form-label fw-semibold">Item Type</label>
+        <select id="itemType" [(ngModel)]="itemType" name="itemType" class="form-select" required>
+          <option value="" disabled>Select Type</option>
+          <option value="EQUIPMENT">Construction Equipment</option>
+          <option value="PPE">PPE</option>
+        </select>
+      </div>
+
+      <!-- Equipment -->
+      <div *ngIf="itemType === 'EQUIPMENT'" class="mb-3">
+        <label for="equipment" class="form-label fw-semibold">Select Equipment</label>
+        <select id="equipment" [(ngModel)]="selectedItemId" name="selectedItemId" class="form-select" required>
+          <option *ngFor="let equipment of equipmentList" [value]="equipment.equipment_id">
+            {{ equipment.type }} - Serial: {{ equipment.serialNumber }}
+          </option>
+        </select>
+      </div>
+
+      <!-- PPE -->
+      <div *ngIf="itemType === 'PPE'" class="mb-3">
+        <label for="ppe" class="form-label fw-semibold">Select PPE</label>
+        <select id="ppe" [(ngModel)]="selectedItemId" name="selectedItemId" class="form-select" required>
+          <option *ngFor="let ppe of ppeList" [value]="ppe.ppe_id">
+            {{ ppe.type }} - Serial: {{ ppe.serialNumber }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Inspection Date -->
+      <div class="mb-3">
+        <label for="inspectionDate" class="form-label fw-semibold">Inspection Date</label>
+        <input type="date" id="inspectionDate" [(ngModel)]="inspectionDate" name="inspectionDate" class="form-control" required>
+      </div>
+
+      <!-- Remarks -->
+      <div class="mb-3">
+        <label for="remarks" class="form-label fw-semibold">Remarks</label>
+        <textarea id="remarks" [(ngModel)]="remarks" name="remarks" rows="3" class="form-control" placeholder="Enter any remarks here..."></textarea>
+      </div>
+
+      <!-- Result -->
+      <div class="mb-4">
+        <label for="result" class="form-label fw-semibold">Inspection Result</label>
+        <select id="result" [(ngModel)]="result" name="result" class="form-select" required>
+          <option value="PASS">Pass</option>
+          <option value="FAIL">Fail</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary btn-lg px-5 py-2 shadow-sm fw-bold" style="border-radius: 8px;">
+          <i class="bi bi-clipboard-check me-2"></i> Submit Inspection
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
             
             <!-- Portfolio End -->
 

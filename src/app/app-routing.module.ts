@@ -53,7 +53,7 @@ import { ProjetComponent } from './projet/projet.component';
 import { TaskComponent } from './projet/tasks/tasks.component';
 import { UpdateProjetComponent } from './projet/update-projet/update-projet.component';
 
-
+import { AddFactureComponent } from './add-facture/add-facture.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -68,7 +68,27 @@ import { UpdateEcheanceComponent } from './update-echeance/update-echeance.compo
 import { UpdatePaiementComponent } from './update-paiement/update-paiement.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { GlbViewerComponent } from './glb-viewer/glb-viewer.component';
+import { BudgetFormComponent } from './budget-form/budget-form.component';
 
+import { UnauthorizedComponent } from './auth/unauthorized/unauthorized.component';
+import { HomeComponent } from './home/home.component';
+import { AddConstructionEquipmentComponent } from './add-construction-equipment/add-construction-equipment.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { AddEquipmentInspectionComponent } from './add-equipment-inspection/add-equipment-inspection.component';
+import { AddPPEComponent } from './add-ppe/add-ppe.component';
+import { ConstructionEquipmentFrontlistComponent } from './construction-equipment-frontlist/construction-equipment-frontlist.component';
+import { DisplayConstructionEquipmentComponent } from './display-construction-equipment/display-construction-equipment.component';
+import { DisplayEquipmentInspectionComponent } from './display-equipment-inspection/display-equipment-inspection.component';
+import { EquipmentInspectionFrontaddComponent } from './equipment-inspection-frontadd/equipment-inspection-frontadd.component';
+import { EquipmentInspectionFrontlistComponent } from './equipment-inspection-frontlist/equipment-inspection-frontlist.component';
+import { PPEFrontlistComponent } from './ppe-frontlist/ppe-frontlist.component';
+import { SafetyAlertsComponent } from './safety-alerts/safety-alerts.component';
+import { SafetyDashboardComponent } from './safety-dashboard/safety-dashboard.component';
+import { SafetyManagementComponent } from './safety-management/safety-management.component';
+import { UpdateEquipmentInspectionComponent } from './update-equipment-inspection/update-equipment-inspection.component';
+import { authGuard } from './auth/auth.guard';
+import { Paiement } from './list-paiement/Paiement';
+import { PaiementComponent } from './paiement/paiement.component';
 /////////////////////commmandeeeee////////
 
 
@@ -83,7 +103,9 @@ const routes: Routes = [
 {path:'',redirectTo:'utilisateur',pathMatch:'full'} ,
 {path:'contrat/:id',component: AjouterContratComponent},
 {path:'calendar',component:CalendarComponent},
-{path: 'terrefront',component:TerrefrontlistComponent},
+{path: 'terrefront',component:TerrefrontlistComponent,
+    canActivate: [authGuard],
+    data: { role: 'USER' } },
 {path:'papier/:id',component:PapierfrontComponent},
 { path: 'detailcontrat/:id', component: ContratDetailComponent },
 {path:'utilisateur',component:UtilisateurComponent},
@@ -133,7 +155,7 @@ const routes: Routes = [
   
   {path:'recruter',component:RecrutementComponent},
 
-  {path: 'projets' ,component:ProjetComponent},
+  {path: 'projets' ,component:ProjetComponent,canActivate: [authGuard],data: { role: 'ADMIN' }},
   {path: 'add-projet',component:AddProjetComponent},
   {path: 'update-projet/:id' ,component:UpdateProjetComponent},
   {path: 'add-rapport/:idProjet' ,component:AddRapportComponent} ,
@@ -143,6 +165,9 @@ const routes: Routes = [
   {path: 'kpi/:id' ,component:KpiComponent},
 
 
+
+  {path: 'paiement' , component:PaiementComponent},
+  {path: 'add-facture', component:AddFactureComponent},
   { path: 'factures', component: ListFactureComponent },
   { path: 'echeances', component: ListEcheanceComponent },
   { path: 'addEcheance', component: AddEcheanceComponent },
@@ -153,7 +178,31 @@ const routes: Routes = [
   {path: 'update-paiement /:id', component: UpdatePaiementComponent},
 
   {path: 'viewer/:id' ,component:GlbViewerComponent},
-  {path: '', component:CatalogComponent}
+  {path: 'catalog', component:CatalogComponent},
+  {path: 'budget' ,component:BudgetFormComponent},
+  {path: 'unauthorized' ,component:UnauthorizedComponent},
+  //{ path: '', redirectTo: '/utilisateur', pathMatch: 'full' },
+  //{ path: '**', redirectTo: '/utilisateur' },
+  {path: 'home' ,component:HomeComponent},
+
+
+
+
+  { path: 'safety-management', component: SafetyManagementComponent },
+    { path: 'add-ppe', component: AddPPEComponent },
+    { path: 'add-employeee', component: AddEmployeeComponent }, // Add route for AddEmployeeComponent
+    { path: 'display-construction-equipment', component: DisplayConstructionEquipmentComponent },
+    { path: 'add-construction-equipment', component: AddConstructionEquipmentComponent },
+    { path: 'display-equipment-inspection', component: DisplayEquipmentInspectionComponent },
+    { path: 'add-equipment-inspection', component: AddEquipmentInspectionComponent },
+    { path: 'update-equipment-inspection/:id', component: UpdateEquipmentInspectionComponent },
+    { path: 'equipment-inspections', component: EquipmentInspectionFrontlistComponent },
+    {path : 'equipment-inspection-frontadd', component: EquipmentInspectionFrontaddComponent},
+    {path : 'construction-equipment-frontlist', component : ConstructionEquipmentFrontlistComponent},
+    {path : 'ppe-frontlist', component : PPEFrontlistComponent},
+    {path : 'login', component : UtilisateurComponent},
+    {path : 'alerts', component : SafetyAlertsComponent},
+    {path: 'dashboard', component: SafetyDashboardComponent }
 
 
 

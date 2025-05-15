@@ -90,6 +90,25 @@ import { ListFactureComponent } from './list-facture/list-facture.component';
 import { NgChartsModule } from 'ng2-charts';  // Import ng2-charts module
 import { CatalogComponent } from './catalog/catalog.component';
 import { GlbViewerComponent } from './glb-viewer/glb-viewer.component';
+import { BudgetFormComponent } from './budget-form/budget-form.component';
+import { UnauthorizedComponent } from './auth/unauthorized/unauthorized.component';
+import { HomeComponent } from './home/home.component';
+import { AddConstructionEquipmentComponent } from './add-construction-equipment/add-construction-equipment.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { AddEquipmentInspectionComponent } from './add-equipment-inspection/add-equipment-inspection.component';
+import { AddPPEComponent } from './add-ppe/add-ppe.component';
+import { ConstructionEquipmentFrontlistComponent } from './construction-equipment-frontlist/construction-equipment-frontlist.component';
+import { DisplayConstructionEquipmentComponent } from './display-construction-equipment/display-construction-equipment.component';
+import { DisplayEquipmentInspectionComponent } from './display-equipment-inspection/display-equipment-inspection.component';
+import { EquipmentInspectionFrontaddComponent } from './equipment-inspection-frontadd/equipment-inspection-frontadd.component';
+import { EquipmentInspectionFrontlistComponent } from './equipment-inspection-frontlist/equipment-inspection-frontlist.component';
+import { PPEFrontlistComponent } from './ppe-frontlist/ppe-frontlist.component';
+import { SafetyAlertsComponent } from './safety-alerts/safety-alerts.component';
+import { SafetyDashboardComponent } from './safety-dashboard/safety-dashboard.component';
+import { SafetyManagementComponent } from './safety-management/safety-management.component';
+import { UpdateEquipmentInspectionComponent } from './update-equipment-inspection/update-equipment-inspection.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PaiementComponent } from './paiement/paiement.component';
 
 
 
@@ -185,7 +204,27 @@ ProjetComponent,
      PaimentComponent,
          UpdatePaiementComponent,
          GlbViewerComponent,
-    CatalogComponent
+    CatalogComponent,
+    BudgetFormComponent,
+    UnauthorizedComponent,
+    HomeComponent,
+    SafetyManagementComponent,
+    AddPPEComponent,
+    AddEmployeeComponent,
+    AddConstructionEquipmentComponent,
+    DisplayConstructionEquipmentComponent,
+    DisplayEquipmentInspectionComponent,
+    AddEquipmentInspectionComponent,
+    UpdateEquipmentInspectionComponent,
+    EquipmentInspectionFrontlistComponent,
+    EquipmentInspectionFrontaddComponent,
+    ConstructionEquipmentFrontlistComponent,
+    PPEFrontlistComponent,
+    UtilisateurComponent,
+    SafetyAlertsComponent,
+    SafetyDashboardComponent,
+    NavbarComponent,
+    PaiementComponent
 
   
   ],

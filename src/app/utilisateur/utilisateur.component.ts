@@ -43,6 +43,7 @@ export class UtilisateurComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear(); // ⬅️ Add this to reset old login sessions
     setTimeout(() => {
       this.isSignIn = true;
     }, 200);
@@ -204,35 +205,35 @@ export class UtilisateurComponent implements OnInit {
   
     const user = { username: this.username, password: this.password };
   
-    // Check for admin credentials
-    
-    // Regular login flow for non-admin users
     this.authService.login(user).subscribe(
       (response) => {
-        if (this.username === 'admin') {
-          console.log('Admin logged in');
-          // Navigate directly to the admin page
-          this.router.navigate(['/listterre']);
-       return;
-        }
-      
         console.log('Réponse du serveur :', response);
+  
         if (response && response.username) {
           console.log('Utilisateur connecté:', response.username);
         }
+  
+        // Store data in localStorage
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', response.username);
-        localStorage.setItem('id',response.id);
-
-      
-        this.router.navigate(['/terrefront']);
+        localStorage.setItem('id', response.id);
+        localStorage.setItem('role', response.role);  // Store role
+       // this.router.navigate(['/employe'])
+ 
+        // 🔀 Redirect based on role
+        if (response.role === 'ADMIN') {
+          this.router.navigate(['/projets']); // Route for admin/backoffice
+        } else {
+          this.router.navigate(['/terrefront']); // Route for standard users
+        }
       },
       (error) => {
         console.error('Erreur de connexion :', error);
-        this.errorMessage = 'Nom dutilisateur ou mot de passe incorrect';
+        this.errorMessage = 'Nom d’utilisateur ou mot de passe incorrect';
       }
     );
   }
+  
   
 
   // Reset password logic

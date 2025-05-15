@@ -1,3 +1,6 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<main id="main" class="main">
 <div class="container mt-4">
   <h2>Ajouter un Paiement</h2>
   <form [formGroup]="paiementForm" (ngSubmit)="onSubmit()">
@@ -40,3 +43,4 @@
     <button type="submit" class="btn btn-primary" [disabled]="paiementForm.invalid">Ajouter Paiement</button>
   </form>
 </div>
+</main>

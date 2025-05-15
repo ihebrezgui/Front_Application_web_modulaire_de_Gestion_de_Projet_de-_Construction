@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PanierServService } from '../PanierService/panier-serv.service';
 import { CommandeSerService } from '../CommandeService/commande-ser.service';
 import { Commande, EtatCommande } from '../commande';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
@@ -14,7 +14,7 @@ export class PanierComponent implements OnInit {
   stockDetails: any = null; // Pour stocker les informations du stock après la commande
   loadingStock: boolean = false; 
   dateLivraisonPrevue: Date | undefined;
-  constructor(private panierService: PanierServService,private commandeService: CommandeSerService) {}
+  constructor(private panierService: PanierServService,private commandeService: CommandeSerService,private router: Router) {}
 
   ngOnInit(): void {
     this.loadCartRessources();  // Charger les ressources du panier au démarrage
@@ -38,6 +38,7 @@ export class PanierComponent implements OnInit {
     if (this.cartRessources.length === 0) {
       alert("Votre panier est vide !");
       return;
+
     }
   
     const ressourcesValidées = this.cartRessources.filter(item => item.ressource && item.ressource.prixUnitaire);
@@ -81,7 +82,7 @@ export class PanierComponent implements OnInit {
             }
           );
         });
-  
+        
         // 🔴 Supprimer toutes les ressources du panier après la commande
         this.panierService.viderPanier().subscribe(() => {
           console.log("Panier vidé après la commande");
@@ -89,7 +90,8 @@ export class PanierComponent implements OnInit {
         });
   
         localStorage.removeItem('cartRessources'); // Nettoyer le stockage local
-        window.location.reload(); // Recharger la page
+       
+         this.router.navigate(['/afficher']); // 👈 Redirect here
       },
       (error) => {
         console.error("Erreur lors de l'ajout de la commande", error);
@@ -112,5 +114,11 @@ export class PanierComponent implements OnInit {
       }
     );
   }
+  goToPaiement() {
+  localStorage.setItem('cartRessources', JSON.stringify(this.cartRessources));
+  localStorage.setItem('dateLivraisonPrevue', this.dateLivraisonPrevue?.toString() || '');
+  this.router.navigate(['/paiement']);
+}
+
 
 }

@@ -28,23 +28,46 @@
         <a class="nav-link collapsed" data-bs-toggle="collapse" href="#finance-nav">
           <i class="bi bi-cash-coin"></i><span>Finance</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="finance-nav" class="nav-content collapse" [class.show]="isActive('/factures') || isActive('/echeances') || isActive('/paiements')" data-bs-parent="#sidebar-nav">
+        <ul id="finance-nav" class="nav-content collapse" [class.show]="isActive('/factures') || isActive('/echeances') || isActive('/paiements') || isActive('/add-facture') || isActive('/addEcheance')|| isActive('/addPaiement') "  data-bs-parent="#sidebar-nav">
           <li><a routerLink="/factures" routerLinkActive="active"><i class="bi bi-file-earmark-text"></i><span>Factures</span></a></li>
           <li><a routerLink="/echeances" routerLinkActive="active"><i class="bi bi-calendar-check"></i><span>Échéances</span></a></li>
           <li><a routerLink="/paiements" routerLinkActive="active"><i class="bi bi-credit-card"></i><span>Paiements</span></a></li>
+          <li><a routerLink="/add-facture" routerLinkActive="active"><i class="bi bi-credit-card"></i><span>Add Facture</span></a></li>
+          <li><a routerLink="/addEcheance" routerLinkActive="active"><i class="bi bi-credit-card"></i><span>Add Echeance</span></a></li>
+          <li><a routerLink="/addPaiement" routerLinkActive="active"><i class="bi bi-credit-card"></i><span>Add Paiement</span></a></li>
         </ul>
       </li>
       
       <!-- Projects -->
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#components-nav">
-          <i class="bi bi-menu-button-wide"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#projects-nav">
+          <i class="bi bi-clipboard"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse" [class.show]="isActive('/projets') || isActive('/add-projet')" data-bs-parent="#sidebar-nav">
+        <ul id="projects-nav" class="nav-content collapse" [class.show]="isActive('/projets') || isActive('/add-projet')" data-bs-parent="#sidebar-nav">
           <li><a routerLink="/projets" routerLinkActive="active"><i class="bi bi-circle"></i><span>Projects</span></a></li>
           <li><a routerLink="/add-projet" routerLinkActive="active"><i class="bi bi-circle"></i><span>Add a Project</span></a></li>
         </ul>
       </li>
+
+
+
+
+      <!-- Safety -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#safety-nav">
+          <i class="bi bi-clipboard"></i><span>Safety</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="safety-nav" class="nav-content collapse" [class.show]="isActive('/safety-management') || isActive('/add-construction-equipment') || isActive('/display-construction-equipment') || isActive('/display-equipment-inspection') || isActive('/add-equipment-inspection')|| isActive('/dashboard')" data-bs-parent="#sidebar-nav">
+          <li><a routerLink="/safety-management" routerLinkActive="active"><i class="bi bi-circle"></i><span>Safety Management</span></a></li>
+          <li><a routerLink="/add-construction-equipment" routerLinkActive="active"><i class="bi bi-circle"></i><span>Add a Construction Equipment</span></a></li>
+          <li><a routerLink="/add-equipment-inspection" routerLinkActive="active"><i class="bi bi-circle"></i><span>Add Equipment Inspection</span></a></li>
+          <li><a routerLink="/display-construction-equipment" routerLinkActive="active"><i class="bi bi-circle"></i><span>Construction Equipments</span></a></li>
+          <li><a routerLink="/display-equipment-inspection" routerLinkActive="active"><i class="bi bi-circle"></i><span>Equipment Inspection</span></a></li>
+          <li><a routerLink="/dashboard" routerLinkActive="active"><i class="bi bi-circle"></i><span>Inspection Dashboard</span></a></li>
+          
+        </ul>
+      </li>
+     
       
       <!-- Logistique -->
       <li class="nav-item">
@@ -68,56 +91,15 @@
           <!-- Employés -->
           <li>
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#employee-nav">
-              <i class="bi bi-people"></i><span>Employés</span><i class="bi bi-chevron-down ms-auto"></i>
+              <i class="bi bi-people"></i><span>Rh</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="employee-nav" class="nav-content collapse" [class.show]="isActive('/add-employee') || isActive('/employees')" data-bs-parent="#rh-nav">
-              <li><a routerLink="/" routerLinkActive="active"><i class="bi bi-circle"></i><span>Liste Employés</span></a></li>
-              <li *ngIf="role === 'ADMIN'"><a routerLink="/add-employee" routerLinkActive="active"><i class="bi bi-circle"></i><span>Ajouter Employé</span></a></li>
+              <li><a routerLink="/employe" routerLinkActive="active"><i class="bi bi-circle"></i><span>Liste Employés</span></a></li>
+              
             </ul>
           </li>
       
-          <!-- Absences -->
-          <li *ngIf="role === 'ADMIN'">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#absence-nav">
-              <i class="bi bi-calendar-x"></i><span>Absences</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="absence-nav" class="nav-content collapse" [class.show]="isActive('/absence') || isActive('/employees/absences')" data-bs-parent="#rh-nav">
-              <li><a routerLink="/absence" routerLinkActive="active"><i class="bi bi-circle"></i><span>Gérer Absences</span></a></li>
-              <li><a routerLink="/employees/absences" routerLinkActive="active"><i class="bi bi-circle"></i><span>Liste Absences</span></a></li>
-            </ul>
-          </li>
-      
-          <!-- Performances -->
-          <li *ngIf="role === 'ADMIN'">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#performance-nav">
-              <i class="bi bi-speedometer2"></i><span>Performances</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="performance-nav" class="nav-content collapse" [class.show]="isActive('/performance') || isActive('/listperformance') || isActive('/listperformanceEmpl')" data-bs-parent="#rh-nav">
-              <li><a routerLink="/performance" routerLinkActive="active"><i class="bi bi-circle"></i><span>Évaluer</span></a></li>
-              <li><a routerLink="/listperformance" routerLinkActive="active"><i class="bi bi-circle"></i><span>Liste par Employé</span></a></li>
-              <li><a routerLink="/listperformanceEmpl" routerLinkActive="active"><i class="bi bi-circle"></i><span>Toutes les performances</span></a></li>
-            </ul>
-          </li>
-      
-          <!-- Salaire -->
-          <li><a routerLink="/salaire" routerLinkActive="active"><i class="bi bi-cash-stack"></i><span>Salaire</span></a></li>
-      
-          <!-- Demandes -->
-          <li>
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#demande-nav">
-              <i class="bi bi-file-earmark-text"></i><span>Demandes</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="demande-nav" class="nav-content collapse" [class.show]="isActive('/demande')" data-bs-parent="#rh-nav">
-              <li><a routerLink="/demande" routerLinkActive="active"><i class="bi bi-circle"></i><span>Gérer Demandes</span></a></li>
-            </ul>
-          </li>
-      
-          <!-- Disponibilité -->
-          <li><a routerLink="/disponibilite" routerLinkActive="active"><i class="bi bi-clipboard-check"></i><span>Disponibilité</span></a></li>
-      
-          <!-- Recrutement -->
-          <li><a routerLink="/recrutement" routerLinkActive="active"><i class="bi bi-person-plus"></i><span>Recrutement</span></a></li>
-      
+         
         </ul>
       </li>
       
@@ -151,23 +133,7 @@
         </ul>
       </li><!-- End Forms Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Tables Nav -->
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">

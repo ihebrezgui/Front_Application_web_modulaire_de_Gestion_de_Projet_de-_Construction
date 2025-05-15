@@ -1,3 +1,6 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<main id="main" class="main">
 <div class="container">
     <h2>Ajouter une Facture</h2>
     <form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
@@ -51,4 +54,4 @@
       <button type="submit" class="btn btn-primary mt-3" [disabled]="factureForm.invalid">Ajouter</button>
     </form>
   </div>
-  
+  </main>

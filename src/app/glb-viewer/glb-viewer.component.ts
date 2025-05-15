@@ -91,6 +91,7 @@ infoPanelPosition = { x: 0, y: 0 };
 
   ngOnInit(): void {
     const modelId = Number(this.route.snapshot.paramMap.get('id'));
+    
     if (!isNaN(modelId)) {
       this.supabase.getModelById(modelId).then(model => {
         if (model?.url) {

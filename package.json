@@ -19,7 +19,7 @@
     "@angular/material": "^16.2.14",
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
-    "@angular/router": "^16.2.0",
+    "@angular/router": "^16.2.12",
     "@docuseal/angular": "^1.0.15",
     "@fullcalendar/angular": "^6.1.16",
     "@fullcalendar/core": "^6.1.15",

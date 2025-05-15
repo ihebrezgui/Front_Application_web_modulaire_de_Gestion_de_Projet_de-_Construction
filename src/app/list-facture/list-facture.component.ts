@@ -192,41 +192,124 @@ export class ListFactureComponent implements OnInit {
 
   exportToPDF(facture: Facture): void {
     const doc = new jsPDF();
-
-    doc.setFontSize(16);
+    
+    // Add light gray background for header (corrected method name)
+    doc.setFillColor(240, 240, 240);
+    doc.rect(0, 0, 210, 30, 'F');
+    
+    // Company logo placeholder (replace with your actual logo)
+    // doc.addImage(logoData, 'PNG', 10, 10, 30, 15);
+    
+    // Invoice title with styling
+    doc.setFontSize(20);
     doc.setFont("helvetica", "bold");
-    doc.text('FACTURE', 105, 15, { align: 'center' });
-
-    doc.setFontSize(12);
+    doc.setTextColor(40, 40, 40);
+    doc.text('FACTURE', 105, 20, { align: 'center' });
+    
+    // Company info with styling
+    doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text('Auto Entrepreneur', 170, 15);
-
+    doc.setTextColor(100, 100, 100);
+    doc.text('Auto Entrepreneur', 170, 20);
+    doc.text('123 Business Street', 170, 25);
+    doc.text('75000 Paris, France', 170, 30);
+    
+    // Barcode with better positioning
     const barcode = facture.reference;
     const barcodeCanvas = document.createElement('canvas');
-
     JsBarcode(barcodeCanvas, barcode, {
-      format: 'CODE128',
-      width: 2,
-      height: 30,
-      displayValue: false
+        format: 'CODE128',
+        width: 2,
+        height: 30,
+        displayValue: true,
+        fontSize: 12,
+        margin: 10
     });
-
-    doc.addImage(barcodeCanvas, 'PNG', 10, 25, 100, 20);
-
+    
+    // Barcode with border
+    doc.setDrawColor(200, 200, 200);
+    doc.rect(10, 40, 60, 30);
+    doc.addImage(barcodeCanvas, 'PNG', 15, 45, 50, 20);
+    
+    // Invoice details section with better styling
     doc.setFontSize(12);
-    doc.text(`Date d'émission: ${new Date(facture.dateEmission).toLocaleDateString()}`, 10, 65);
-    doc.text(`Référence: ${facture.reference}`, 10, 75);
-    doc.text(`Montant Total: ${facture.montantTotal.toFixed(2)} €`, 10, 85);
-    doc.text(`Statut: ${facture.statut}`, 10, 95);
-
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(60, 60, 60);
+    doc.text('DÉTAILS DE LA FACTURE', 10, 85);
+    
+    // Horizontal line
+    doc.setDrawColor(200, 200, 200);
+    doc.line(10, 88, 200, 88);
+    
+    // Invoice details with better formatting
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    
+    doc.text(`Date d'émission:`, 10, 100);
+    doc.text(`${new Date(facture.dateEmission).toLocaleDateString()}`, 50, 100);
+    
+    doc.text(`Référence:`, 10, 110);
+    doc.text(`${facture.reference}`, 50, 110);
+    
+    doc.text(`Montant Total:`, 10, 120);
+    doc.text(`${facture.montantTotal.toFixed(2)} €`, 50, 120);
+    
+    doc.text(`Statut:`, 10, 130);
+    doc.text(`${facture.statut}`, 50, 130);
+    
+    // Items table with better styling
     autoTable(doc, {
-      startY: 110,
-      head: [['Description', 'Montant (€)']],
-      body: [
-        [facture.description || 'Non spécifiée', facture.montantTotal.toFixed(2)]
-      ]
+        startY: 140,
+        head: [
+            {
+                content: 'Description',
+                styles: { 
+                    //fillColor: [60, 60, 60],
+                   // textColor: [255, 255, 255],
+                    //fontStyle: 'bold'
+                }
+            },
+            {
+                content: 'Montant (€)',
+                styles: { 
+                    ///fillColor: [60, 60, 60],
+                    //textColor: [255, 255, 255],
+                    //fontStyle: 'bold'
+                }
+            }
+        ],
+        body: [
+            [
+                { 
+                    content: facture.description || 'Non spécifiée',
+                    styles: { fontStyle: 'normal' }
+                },
+                { 
+                    content: facture.montantTotal.toFixed(2),
+                    styles: { fontStyle: 'normal' }
+                }
+            ]
+        ],
+        theme: 'grid',
+        headStyles: {
+            fillColor: [70, 70, 70],
+            textColor: 255,
+            fontStyle: 'bold'
+        },
+        alternateRowStyles: {
+            fillColor: [240, 240, 240]
+        },
+        margin: { top: 10 }
     });
-
+    
+    // Footer
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    doc.text('Merci pour votre confiance!', 105, 280, { align: 'center' });
+    doc.text('Pour toute question, contactez-nous à contact@entreprise.com', 105, 285, { align: 'center' });
+    
+    // Save the PDF
     doc.save(`Facture-${facture.reference}.pdf`);
-  }
+}
 }

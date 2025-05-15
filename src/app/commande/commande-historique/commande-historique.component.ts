@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-commande-historique',
   templateUrl: './commande-historique.component.html',
-  styleUrls: ['./commande-historique.component.css']
+  styleUrls: ['./style1.css']
 })
 export class CommandeHistoriqueComponent implements OnInit {
   commandes: Commande[] = [];

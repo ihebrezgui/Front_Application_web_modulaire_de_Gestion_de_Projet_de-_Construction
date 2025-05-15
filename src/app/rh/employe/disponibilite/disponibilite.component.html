@@ -1,3 +1,94 @@
+<app-header></app-header>
+
+  <!-- ======= Sidebar ======= -->
+ <!-- ======= Sidebar ======= -->
+ <aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Employés -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-toggle="collapse" href="#employee-nav">
+        <i class="bi bi-people"></i><span>Employés</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="employee-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li><a routerLink="/employe"><i class="bi bi-circle"></i><span>Liste Employés</span></a></li>
+        <li><a routerLink="/add-employee"><i class="bi bi-circle"></i><span>Ajouter Employé</span></a></li>
+      </ul>
+    </li>
+
+    <!-- Absences -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-toggle="collapse" href="#absence-nav">
+        <i class="bi bi-calendar-x"></i><span>Absences</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="absence-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li><a routerLink="/absence"><i class="bi bi-circle"></i><span>Gérer Absences</span></a></li>
+        <li><a routerLink="/employees/absences"><i class="bi bi-circle"></i><span>Liste Absences</span></a></li>
+      </ul>
+    </li>
+
+    <!-- Performances -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-toggle="collapse" href="#performance-nav">
+        <i class="bi bi-speedometer2"></i><span>Performances</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="performance-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li><a routerLink="/performance"><i class="bi bi-circle"></i><span>Évaluer</span></a></li>
+        <li><a routerLink="/listperformance"><i class="bi bi-circle"></i><span>Liste par Employé</span></a></li>
+        <li><a routerLink="/listperformanceEmpl"><i class="bi bi-circle"></i><span>Toutes les performances</span></a></li>
+      </ul>
+    </li>
+
+    <!-- Salaires -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/salaire">
+        <i class="bi bi-cash-stack"></i>
+        <span>Salaire</span>
+      </a>
+    </li>
+
+    <!-- Demandes -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-toggle="collapse" href="#demande-nav">
+        <i class="bi bi-file-earmark-text"></i><span>Demandes</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="demande-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li><a routerLink="/demande"><i class="bi bi-circle"></i><span>Gérer Demandes</span></a></li>
+       
+      </ul>
+    </li>
+
+    <!-- Disponibilité -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/disponibilite">
+        <i class="bi bi-clipboard-check"></i>
+        <span>Disponibilité</span>
+      </a>
+    </li>
+
+    <!-- Recrutement -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/recrutement">
+        <i class="bi bi-person-plus"></i>
+        <span>Recrutement</span>
+      </a>
+    </li>
+
+
+  </ul>
+
+</aside><!-- End Sidebar--><!-- End Sidebar-->
+
+<main id="main" class="main">
 <div class="container mt-4">
   <div class="card border-0 shadow-sm">
     <div class="card-header bg-white">
@@ -148,3 +239,4 @@
     </div>
   </div>
 </div>
+</main>

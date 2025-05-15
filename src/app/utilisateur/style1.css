@@ -1,6 +1,6 @@
 .root {
   --primary-color: #fdbe33;;
-  --secondary-color: #57B894;
+  --secondary-color: #000000;
   --black: #000000;
   --white: #ffffff;
   --gray: #efefef;
@@ -29,7 +29,7 @@ body {
   height: 100vh;
   overflow: hidden;
   --primary-color: #b7d33b;
-  --secondary-color: #57B894;
+  --secondary-color: #000000;
   --black: #000000;
   --white: #ffffff;
   --gray: #efefef;
@@ -51,7 +51,7 @@ body {
   --black: #000000;
   --white: #ffffff;
   --gray: #efefef;
-  --secondary-color: #57B894;
+  --secondary-color: #000000;
 }
 
 .row {

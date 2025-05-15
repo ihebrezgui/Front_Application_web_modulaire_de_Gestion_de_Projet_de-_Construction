@@ -22,7 +22,8 @@ export class CatalogComponent implements OnInit {
     this.models = await this.supabase.getAllModels();
   }
 
-  viewModel(modelId: number) {
-    this.router.navigate(['/viewer', modelId]);
-  }
+  viewModel(model: any) {
+  this.router.navigate(['/viewer', model.id]);
+}
+
 }

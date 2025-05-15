@@ -48,7 +48,22 @@ export class TerrefrontlistComponent implements OnInit,AfterViewInit {
     this.fetchSearchHistory();
     this.fetchAllTerres();
     this.getContracts();
-    this.loadModels();   
+    this.loadModels(); 
+    this.ensureChatbotVisible();  
+  }
+
+  ensureChatbotVisible(): void {
+    const existingIframe = document.querySelector('iframe[src*="chatbase.co"]') as HTMLIFrameElement;
+  
+    if (existingIframe) {
+      existingIframe.style.display = 'block'; // Re-show it if hidden
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://www.chatbase.co/embed.min.js';
+      script.id = '4jQ7rr-L43pZzIuFqUgxi';
+      script.setAttribute('domain', 'www.chatbase.co');
+      document.body.appendChild(script);
+    }
   }
   
   async loadModels() {

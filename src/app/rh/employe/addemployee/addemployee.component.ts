@@ -63,7 +63,7 @@ onSubmit() {
         console.log('Employé ajouté avec succès', response);
         alert('Employé ajouté avec succès !');
         this.employeForm.reset();
-        this.router.navigate(['/']);
+        this.router.navigate(['/employe']);
       },
       error => {
         console.error('Erreur lors de l’ajout', error);
